@@ -27,6 +27,8 @@ class RedirectIfAuthenticated
             }
         }
 
+        alert()->success('Login successfully', 'Welcome back to Quizy!');
+
         return $next($request);
     }
 }
