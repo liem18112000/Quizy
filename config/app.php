@@ -180,6 +180,10 @@ return [
          */
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
+        /**
+         * Laravel Excel
+        */
+        Maatwebsite\Excel\ExcelServiceProvider::class,
     ],
 
     /*
@@ -233,6 +237,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // Sweet Alert
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
+        // Laravel Excel
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
     ],
 
 ];
