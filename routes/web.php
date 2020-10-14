@@ -62,8 +62,10 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 
 /*
 |--------------------------------------------------------------------------
-| News Routes
+| Profile Routes
 |--------------------------------------------------------------------------
 */
 
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+
+Route::put('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');

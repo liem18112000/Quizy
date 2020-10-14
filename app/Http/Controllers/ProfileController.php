@@ -52,7 +52,19 @@ class ProfileController extends Controller
      */
     public function update(Request $request, Profile $profile)
     {
-        //
+        $profile->update([
+            'location'  => $request->location,
+            'DOB'       => $request->DOB,
+            'bio'       => $request->bio,
+        ]);
+
+        if ($profile) {
+            alert()->success('Done', 'Profile updated successfully...');
+        } else {
+            alert()->error('Failed', 'Profile updated failed...');
+        }
+
+        return redirect()->route('profile.show', $profile);
     }
 
     /**
