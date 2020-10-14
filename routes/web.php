@@ -35,6 +35,17 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 
 
 
+/*
+|--------------------------------------------------------------------------
+| OAuth Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('login/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.provider');
+
+Route::get('login/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('login.provider.callback');
+
+
 
 /*
 |--------------------------------------------------------------------------
