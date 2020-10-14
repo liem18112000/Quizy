@@ -69,3 +69,27 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 
 Route::put('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Student Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('student/export/', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
+
+Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'import'])->name('student.import');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Lecturer Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
+
+Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');

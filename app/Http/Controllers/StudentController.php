@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User as Student;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
@@ -10,6 +13,18 @@ class StudentController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'students.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new UsersImport, 'students.xlsx');
+
+        return redirect('/')->with('success', 'All good!');
     }
 
     /**

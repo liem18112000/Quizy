@@ -189,6 +189,11 @@ return [
          * Cloudinary
          */
         JD\Cloudder\CloudderServiceProvider::class,
+
+        /**
+         * Socialite
+         */
+        Laravel\Socialite\SocialiteServiceProvider::class,
     ],
 
     /*
@@ -246,6 +251,8 @@ return [
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         // Cloudinary
         'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
+        // Socialite
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
     ],
 
 ];
