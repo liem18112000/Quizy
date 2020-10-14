@@ -29,6 +29,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+<<<<<<< Updated upstream
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
@@ -67,3 +68,8 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 */
 
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+=======
+Route::get('/examList', function(){
+    return view('examlist');
+}) ;
+>>>>>>> Stashed changes
