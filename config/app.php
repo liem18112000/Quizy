@@ -184,6 +184,11 @@ return [
          * Laravel Excel
         */
         Maatwebsite\Excel\ExcelServiceProvider::class,
+
+        /**
+         * Cloudinary
+         */
+        JD\Cloudder\CloudderServiceProvider::class,
     ],
 
     /*
@@ -239,6 +244,8 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         // Laravel Excel
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
+        // Cloudinary
+        'Cloudder' => JD\Cloudder\Facades\Cloudder::class,
     ],
 
 ];

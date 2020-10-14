@@ -16,6 +16,10 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
+            $table->text('profile_image')->default('http://ssl.gstatic.com/accounts/ui/avatar_2x.png');
+            $table->longText('bio')->default('Not Availble');
+            $table->string('location')->default('Not Available');
+            $table->date('DOB')->nullable();
             $table->timestamps();
         });
     }
