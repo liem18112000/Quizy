@@ -72,13 +72,29 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
         ]);
 
+        activity()
+        ->performedOn($user)
+        ->causedBy($user)
+        ->log('New user create');
+
         $profile = Profile::create([
             'user_id'    => $user->id,
         ]);
 
+        activity()
+        ->performedOn($profile)
+        ->causedBy($user)
+        ->log('New profile create');
+
         $role = Role::create([
             'user_id' => $user->id,
         ]);
+
+        activity()
+        ->performedOn($role)
+        ->causedBy($user)
+        ->log('New role create');
+
 
         alert()->success('Register successfully!', 'Welcome to Quizy...');
 
