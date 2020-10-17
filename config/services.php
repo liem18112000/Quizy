@@ -31,14 +31,14 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '690344774435367',
-        'client_secret' => 'ebc50d3fd1d2f7286e02d247e5751ef4',
-        'redirect' => 'http://localhost:8000/callback',
+        'client_id' => '792697661495360',
+        'client_secret' => '2f57d4a576ef6acb6363dddd92230ade',
+        'redirect' => 'http://localhost/Quizy/public/login/facebook/callback',
     ],
     'google' => [
-        'client_id' => '716438745047-ua94i3snt6s01i0ncn3u33j5h5rvu9rk.apps.googleusercontent.com',
-        'client_secret' => '23zeZz1ya9syFMH4ggQM2e-p',
-        'redirect' => 'http://localhost:8000/callback/google',
+        'client_id' => '229526496579-9s27j1toobppacglausibfue7se4elfh.apps.googleusercontent.com',
+        'client_secret' => 'sk7ylz1Owp17A-Vy-ArP1TeR',
+        'redirect' => 'http://localhost/Quizy/public/login/google/callback',
     ],
 
 ];

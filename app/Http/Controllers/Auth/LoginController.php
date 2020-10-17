@@ -9,6 +9,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use App\Models\Profile;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -65,8 +66,7 @@ class LoginController extends Controller
 
         $user = null;
 
-        if ($providerUser->email != null
-        ) {
+        if ($providerUser->email != null) {
             $user = User::where('email', $providerUser->email)
             ->where('name', $providerUser->name)
                 ->where('provider', $provider)
@@ -86,22 +86,49 @@ class LoginController extends Controller
                 'provider'      => $provider,
             ]);
 
+            activity()
+            ->performedOn($user)
+            ->causedBy($user)
+            ->log('New user create by Third pary');
+
             $profile = Profile::create([
-                'user_id'       => $user->id,
+                'user_id'    => $user->id,
             ]);
+
+            activity()
+            ->performedOn($profile)
+            ->causedBy($user)
+            ->log('New profile create');
+
+            $role = Role::create([
+                'user_id' => $user->id,
+            ]);
+
+            activity()
+            ->performedOn($role)
+            ->causedBy($user)
+            ->log('New role create');
+
         } else {
 
             if (!Hash::check($providerUser->id, $user->password)) {
+                activity()
+                ->performedOn($user)
+                ->causedBy($user)
+                ->log('OAuth session fail');
+
                 abort(403);
             }
         }
 
-        $user->status = 1;
-        $user->save();
-
         alert()->success('Login sucess!', 'Welcome to Quizy!');
 
         Auth::login($user, true);
+
+        activity()
+            ->performedOn($user)
+            ->causedBy($user)
+            ->log('OAuth session success');
 
         return redirect($this->redirectTo);
     }
