@@ -99,6 +99,7 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('contact')}}">Contact</a>
                                 </li>
+                                
 
                                 @guest
                                 <li class="nav-item">
@@ -130,6 +131,7 @@
                                     </div>
                                 </li>
                                 @endauth
+                               
                             </ul>
                         </div>
                     </nav>
