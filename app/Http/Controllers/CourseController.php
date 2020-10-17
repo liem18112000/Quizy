@@ -20,7 +20,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('course.index');
+        return view('course.index', [
+            'courses' => Course::all()
+        ]);
     }
 
     /**
