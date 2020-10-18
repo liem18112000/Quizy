@@ -18,6 +18,6 @@ class Role extends Model
 
     public function roleType()
     {
-        return $this->hasOne('App\Models\RoleType');
+        return $this->belongsTo('App\Models\RoleType');
     }
 }

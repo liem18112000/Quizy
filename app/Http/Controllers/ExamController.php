@@ -14,7 +14,9 @@ class ExamController extends Controller
      */
     public function index()
     {
-        //
+        return view('exam.index', [
+            'exams' => Exam::all()
+        ]);
     }
 
     /**
@@ -24,7 +26,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        return view('exam.create');
     }
 
     /**
@@ -35,7 +37,17 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam = Exam::create(
+            $request->all()
+        );
+
+        if($exam){
+            alert()->success('Done', 'Exam saved successfully...');
+        }else{
+            alert()->error('Failed', 'Exam saved failed...');
+        }
+
+        return redirect()->route('exam.show', $exam);
     }
 
     /**
@@ -46,7 +58,9 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
-        //
+        return view('exam.show', [
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -57,7 +71,9 @@ class ExamController extends Controller
      */
     public function edit(Exam $exam)
     {
-        //
+        return view('exam.edit', [
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -69,7 +85,17 @@ class ExamController extends Controller
      */
     public function update(Request $request, Exam $exam)
     {
-        //
+        $exam->update(
+            $request->all()
+        );
+
+        if ($exam) {
+            alert()->success('Done', 'Exam updated successfully...');
+        } else {
+            alert()->error('Failed', 'Exam updated failed...');
+        }
+
+        return redirect()->route('exam.show', $exam);
     }
 
     /**
