@@ -20,4 +20,17 @@ class Role extends Model
     {
         return $this->belongsTo('App\Models\RoleType');
     }
+
+    public function manageCourse(){
+        return $this->hasMany('App\Models\Course','role_id');
+    }
+
+    public function teachCourse(){
+        return $this->hasMany('App\Models\Teaching','user_id','user_id');
+    }
+
+    public function enrollCourse(){
+        return $this->hasMany('App\Models\EnrollCourse','user_id','user_id');
+    }
+
 }

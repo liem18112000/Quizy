@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateChoicesTable extends Migration
+class CreateExamChoiceLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,15 @@ class CreateChoicesTable extends Migration
      */
     public function up()
     {
-        Schema::create('choices', function (Blueprint $table) {
+        Schema::create('exam_choice_log', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("choice_id");
+            $table->foreignId("course_id");
+            $table->foreignId("user_id");
+            $table->foreignId("role_type_id");
             $table->foreignId("exam_id");
             $table->foreignId("question_id");
-            $table->longText("description");
+            $table->foreignId("choice_id");
             $table->timestamps();
-
-            //  #set primary key
-            //  $table->primary(["id","questions_id","exams_id"]);
-             
         });
     }
 
@@ -34,7 +32,6 @@ class CreateChoicesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('choices');
-
+        Schema::dropIfExists('exam_choice_log');
     }
 }
