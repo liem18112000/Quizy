@@ -15,5 +15,9 @@ class DoingExam extends Model
     public function user(){
         return $this->belongsTo('App\Models\EnrollCourse');
     }
+
+    public function choices(){
+        return $this->hasMany('App\Models\ExamChoiceLog','user_id','user_id');
+    }
     
 }
