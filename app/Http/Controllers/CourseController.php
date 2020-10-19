@@ -32,13 +32,14 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         $course = Course::create([
             'name'      => $request->name,
             'user_id'     => $user->id,
             'role_type_id' =>$role->role_type_id,
         ]);
+        alert()->success('Create Course Successfully');
     }
 
     /**
@@ -61,7 +62,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('course.show', [
-            'course' => $course::all()
+            'course' => $course
         ]);
     }
 
