@@ -15,7 +15,13 @@ class CreateExamsTable extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+            $table->string("title");
+            $table->foreignId("user_id");
+            $table->dateTime("allow_time")->nullable();
+            $table->integer("duration_min");
             $table->timestamps();
+
+             #set primary key
         });
     }
 

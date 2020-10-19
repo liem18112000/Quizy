@@ -13,6 +13,6 @@ class RoleType extends Model
 
     public function roles()
     {
-        return $this->hasMany('App\Models\Roles');
+        return $this->hasMany('App\Models\Role','role_type_id');
     }
 }

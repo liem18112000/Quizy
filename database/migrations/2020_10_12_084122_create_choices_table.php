@@ -15,7 +15,15 @@ class CreateChoicesTable extends Migration
     {
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("choice_id");
+            $table->foreignId("exam_id");
+            $table->foreignId("question_id");
+            $table->longText("description");
             $table->timestamps();
+
+            //  #set primary key
+            //  $table->primary(["id","questions_id","exams_id"]);
+             
         });
     }
 
@@ -27,5 +35,6 @@ class CreateChoicesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('choices');
+
     }
 }
