@@ -37,9 +37,10 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        $exam = Exam::create(
-            $request->all()
-        );
+        $exam = Exam::create([
+            'name'      => $request->name,
+            'allowed_time'     => $request->allowed_time,
+        ]);
 
         if($exam){
             alert()->success('Done', 'Exam saved successfully...');
