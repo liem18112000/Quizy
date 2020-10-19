@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -32,7 +34,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        $course = Course::create([
+            'name'      => $request->name,
+            'user_id'     => $user->id,
+            'role_type_id' =>$role->role_type_id,
+        ]);
     }
 
     /**
@@ -55,7 +61,7 @@ class CourseController extends Controller
     public function show(Course $course)
     {
         return view('course.show', [
-            'course' => $course
+            'course' => $course::all()
         ]);
     }
 
