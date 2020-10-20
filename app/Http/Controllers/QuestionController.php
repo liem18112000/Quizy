@@ -25,11 +25,7 @@ class QuestionController extends Controller
      */
     public function create(Request $request)
     {
-        $question = Question::create([
-            'description'      => $request->description,
-            'exam_id'     => $exam->id,
-        ]);
-        alert()->success('Create Question Successfully');
+    
     }
 
     /**
@@ -40,7 +36,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam=Auth::exam();
+        $question = Question::create([
+            'description'      => $request->description,
+            'exam_id'     => $exam->id,
+        ]);
+        alert()->success('Create Question Successfully');
+        return redirect()->route('question.show', $question);
     }
 
     /**

@@ -45,10 +45,11 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
+        $user=Auth::user();
         $course = Course::create([
             'name'      => $request->name,
             'user_id'     => $user->id,
-            'role_type_id' =>$role->role_type_id,
+            'role_type_id' =>$user->role_type_id,
         ]);
 
         if($course){
@@ -56,6 +57,7 @@ class CourseController extends Controller
         }else{
             alert()->error('Failed', 'Course saved failed...');
         }
+        return redirect()->route('course.show', $course);
     }
 
     /**

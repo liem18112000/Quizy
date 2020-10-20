@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Question;
+use App\Models\Exam;
 use App\Models\Choice;
 use Illuminate\Http\Request;
 
@@ -24,7 +26,7 @@ class ChoiceController extends Controller
      */
     public function create()
     {
-
+        return view('choice.create');
     }
 
     /**
@@ -35,7 +37,22 @@ class ChoiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam=
+        $question=
+        $role=Auth::user();
+        $choice = Choice::create([
+            'exam_id'      => $exam->id,
+            'question_id'     => $question->id,
+            'role_type_id' =>$role->role_type_id,
+            'description' =>$request->description,
+        ]);
+
+        if($choice){
+            alert()->success('Done', 'Choice saved successfully...');
+        }else{
+            alert()->error('Failed', 'Choice saved failed...');
+        }
+        return redirect()->route('choice.show', $choice);
     }
 
     /**
