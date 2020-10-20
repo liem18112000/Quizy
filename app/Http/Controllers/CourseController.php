@@ -32,14 +32,9 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create()
     {
-        $course = Course::create([
-            'name'      => $request->name,
-            'user_id'     => $user->id,
-            'role_type_id' =>$role->role_type_id,
-        ]);
-        alert()->success('Create Course Successfully');
+
     }
 
     /**
@@ -50,7 +45,17 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $course = Course::create([
+            'name'      => $request->name,
+            'user_id'     => $user->id,
+            'role_type_id' =>$role->role_type_id,
+        ]);
+
+        if($course){
+            alert()->success('Done', 'Course saved successfully...');
+        }else{
+            alert()->error('Failed', 'Course saved failed...');
+        }
     }
 
     /**
