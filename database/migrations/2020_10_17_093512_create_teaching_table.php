@@ -19,6 +19,7 @@ class CreateTeachingTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('role_type_id');
             $table->longText('teaching_role');
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

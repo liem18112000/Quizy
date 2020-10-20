@@ -20,6 +20,7 @@ class CreateProfilesTable extends Migration
             $table->longText('bio')->default('Not Availble');
             $table->string('location')->default('Not Available');
             $table->date('DOB')->nullable();
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

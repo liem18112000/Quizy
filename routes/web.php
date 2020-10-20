@@ -61,6 +61,18 @@ Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 's
 
 /*
 |--------------------------------------------------------------------------
+| Exam Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
+
+Route::get('/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
+
+
+
+/*
+|--------------------------------------------------------------------------
 | News Routes
 |--------------------------------------------------------------------------
 */

@@ -18,6 +18,7 @@ class CreateEnrollcoursesTable extends Migration
             $table->foreignId("course_id");
             $table->foreignId("user_id");
             $table->foreignId("role_type_id");
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

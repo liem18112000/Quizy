@@ -19,11 +19,12 @@ class CreateQuestionsTable extends Migration
             $table->foreignId("exam_id");
             $table->foreignId("answer_choice_id");
             $table->longText("description");
+            $table->string('status')->default('1');
             $table->timestamps();
 
             //  #set primary key
             // $table->primary(["id","exams_id"]);
-        
+
 
         });
     }

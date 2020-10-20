@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -12,10 +13,10 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
         return view('exam.index', [
-            'exams' => Exam::all()
+            'exams' => Exam::all(),
         ]);
     }
 
@@ -37,9 +38,7 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        $exam = Exam::create(
-            $request->all()
-        );
+        $exam = Exam::create();
 
         if($exam){
             alert()->success('Done', 'Exam saved successfully...');
