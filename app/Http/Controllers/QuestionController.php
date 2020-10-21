@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Http\Request;
 
@@ -22,9 +23,9 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+    
     }
 
     /**
@@ -35,7 +36,13 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam=Auth::exam();
+        $question = Question::create([
+            'description'      => $request->description,
+            'exam_id'     => $exam->id,
+        ]);
+        alert()->success('Create Question Successfully');
+        return redirect()->route('question.show', $question);
     }
 
     /**

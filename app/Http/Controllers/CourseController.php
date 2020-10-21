@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -20,7 +22,9 @@ class CourseController extends Controller
      */
     public function index()
     {
-        return view('course.index');
+        return view('course.index', [
+            'courses' => Course::all()
+        ]);
     }
 
     /**
@@ -30,7 +34,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -41,7 +45,19 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=Auth::user();
+        $course = Course::create([
+            'name'      => $request->name,
+            'user_id'     => $user->id,
+            'role_type_id' =>$user->role_type_id,
+        ]);
+
+        if($course){
+            alert()->success('Done', 'Course saved successfully...');
+        }else{
+            alert()->error('Failed', 'Course saved failed...');
+        }
+        return redirect()->route('course.show', $course);
     }
 
     /**

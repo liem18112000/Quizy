@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User as Lecturer;
+use App\Exports\UsersExport;
+use App\Imports\UsersImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 
 class LecturerController extends Controller
@@ -11,6 +14,18 @@ class LecturerController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('lecturer');
+    }
+
+    public function export()
+    {
+        return Excel::download(new UsersExport, 'lecturers.xlsx');
+    }
+
+    public function import()
+    {
+        Excel::import(new UsersImport, 'lecturers.xlsx');
+
+        return redirect('/')->with('success', 'All good!');
     }
 
     /**
