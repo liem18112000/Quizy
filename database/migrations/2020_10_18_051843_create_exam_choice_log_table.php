@@ -21,6 +21,7 @@ class CreateExamChoiceLogTable extends Migration
             $table->foreignId("exam_id");
             $table->foreignId("question_id");
             $table->foreignId("choice_id");
+            $table->string('status')->default('1');
             $table->timestamps();
         });
     }

@@ -21,10 +21,7 @@ class CreateDoingExamsTable extends Migration
             $table->foreignId("role_type_id");
             $table->unsignedSmallInteger("grade")->nullable();
             $table->dateTime("begin_time")->nullable()->nullable();
-
-
-           
-
+            $table->string('status')->default('1');
             $table->timestamps();
 
              #set primary key

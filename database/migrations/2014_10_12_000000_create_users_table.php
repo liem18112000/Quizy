@@ -16,19 +16,12 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-<<<<<<< HEAD
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('provider')->nullable();
+            $table->string('status')->default('1');
             $table->rememberToken();
-=======
-            // $table->string('email')->unique();
-            // $table->timestamp('email_verified_at')->nullable();
-            // $table->string('password');
-            // $table->string('provider')->default('system');
-            // $table->rememberToken();
->>>>>>> hoadev
             $table->timestamps();
         });
     }

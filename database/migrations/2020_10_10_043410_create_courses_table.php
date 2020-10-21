@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string("name");
             $table->foreignId("admin_id");
             $table->foreignId("role_id");
+            $table->string('status')->default('1');
             $table->timestamps();
 
             #set primary key
