@@ -4,6 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!--Parsley-->
+    <script src="https://parsleyjs.org/dist/parsley.js"></script>
+    <!--Popper-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" ></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -15,6 +27,8 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    @yield('styles')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -41,7 +55,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css')}}">
 
-    @yield('styles')
+
 
 </head>
 <body>
@@ -87,6 +101,7 @@
                                     <a class="nav-link" href="{{ route('contact')}}">Contact</a>
                                 </li>
 
+
                                 @guest
                                 <li class="nav-item">
                                     <a class="btn_1" href="{{ route('login')}}"> <i class="fa fa-lock" aria-hidden="true"></i> Login</a>
@@ -117,6 +132,7 @@
                                     </div>
                                 </li>
                                 @endauth
+
                             </ul>
                         </div>
                     </nav>
@@ -204,13 +220,7 @@
 
 
 
-    @yield('scripts')
 
-    <script>
-        {!!
-            Session::get('message');
-        !!}
-    </script>
 
     <!-- jquery plugins here-->
     <!-- jquery -->
@@ -234,6 +244,8 @@
     <script src="{{ asset('js/waypoints.min.js') }}"></script>
     <!-- custom js -->
     <script src="{{ asset('js/custom.js') }}"></script>
+
+    @yield('scripts')
 
 
 </body>

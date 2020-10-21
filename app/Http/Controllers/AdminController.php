@@ -15,6 +15,9 @@ class AdminController extends Controller
         $this->middleware('auth');
         $this->middleware('admin');
     }
+    public function index(){
+        return view('admin/dashboard');
+    }
 
     /**
      * Display a listing of the resource.

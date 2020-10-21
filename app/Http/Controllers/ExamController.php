@@ -17,6 +17,7 @@ class ExamController extends Controller
     {
         return view('exam.index', [
             'exams' => Exam::all(),
+            'course' => $course
         ]);
     }
 

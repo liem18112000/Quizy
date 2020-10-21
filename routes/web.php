@@ -61,13 +61,13 @@ Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 's
 
 /*
 |--------------------------------------------------------------------------
-| Exam Routes
+| Exams Routes
 |--------------------------------------------------------------------------
 */
 
-Route::get('/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
+Route::get('/course/{course}/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
 
-Route::get('/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
+Route::get('/course/{course}/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
 
 
 
@@ -91,6 +91,13 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 
+
+
+
+
+Route::get('/examList', function(){
+    return view('examlist');
+}) ;
 Route::put('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
 
