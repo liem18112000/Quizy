@@ -11,8 +11,18 @@ class Course extends Model
 
     protected $guarded = [];
 
-    public function user()
+    public function managedBy()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasOne('App\Models\Role','user_id','admin_id');
     }
+
+    public function teachBy(){
+        return $this->hasMany('App\Models\Teaching','course_id','id');
+    }
+
+    public function hasStudent(){
+        return $this->hasMany('App\Models\EnrollCourse','course_id','id');
+    }
+
+    
 }

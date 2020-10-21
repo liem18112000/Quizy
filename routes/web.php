@@ -35,6 +35,17 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 
 
 
+/*
+|--------------------------------------------------------------------------
+| OAuth Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('login/{provider}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('login.provider');
+
+Route::get('login/{provider}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('login.provider.callback');
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -74,7 +85,7 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 
 /*
 |--------------------------------------------------------------------------
-| News Routes
+| Profile Routes
 |--------------------------------------------------------------------------
 */
 
@@ -87,3 +98,28 @@ Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class,
 Route::get('/examList', function(){
     return view('examlist');
 }) ;
+Route::put('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Student Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('student/export/', [App\Http\Controllers\StudentController::class, 'export'])->name('student.export');
+
+Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'import'])->name('student.import');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Lecturer Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
+
+Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');

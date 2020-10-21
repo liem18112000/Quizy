@@ -1,5 +1,14 @@
 @extends('layouts.auth')
 
+@section('styles')
+<style>
+.login-icon{
+    width: 30px;
+    height: 30px;
+}
+</style>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -52,13 +61,17 @@
                         </div>
 
                         <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-2">
+                            <div class="col-md-8 offset-md-2" >
                                 <button type="submit" class="btn_2 btn-block">
                                     {{ __('Login') }}
                                 </button>
 
-                                <br>
 
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-2" style='display : flex; justify-content : space-around;'>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
@@ -66,6 +79,14 @@
                                 @endif
 
                                 <a class="btn btn-link" href="{{ route('register')}}">Create Account</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-4 offset-md-4" style='display : flex; justify-content : space-around;'>
+                                <span>Sign in with </span>
+                                <a href="{{route('login.provider', 'google')}}"><img src="{{asset('img/logo-GG.png')}}" class="login-icon" alt="logo-google"></a>
+                                <a href="{{route('login.provider', 'facebook')}}"><img src="{{asset('img/logo-FB.png')}}" class="login-icon" alt="logo-facebook"></a>
                             </div>
                         </div>
                     </form>

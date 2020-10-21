@@ -15,7 +15,7 @@ class CreateRoleTypesTable extends Migration
     {
         Schema::create('role_types', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->nullable();
             $table->text('description')->nullable();
             $table->integer('authority_level')->default('1');
             $table->string('status')->default('1');

@@ -19,6 +19,7 @@ class CreateRolesTable extends Migration
             $table->foreignId('role_type_id')->default('1');
             $table->string('status')->default('1');
             $table->timestamps();
+
         });
     }
 
