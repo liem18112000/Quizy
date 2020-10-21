@@ -36,7 +36,6 @@ class QuestionController extends Controller
      */
     public function store(Request $request)
     {
-        $exam=Auth::exam();
         $question = Question::create([
             'description'      => $request->description,
             'exam_id'     => $exam->id,
