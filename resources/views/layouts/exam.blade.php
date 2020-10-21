@@ -229,8 +229,7 @@
     <script src="{{ asset('js/popper.min.js') }}"></script>
     <!-- bootstrap js -->
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
-    <!-- easing js -->
-    <script src="{{ asset('js/jquery.magnific-popup.js') }}"></script>
+   
     <!-- swiper js -->
     <script src="{{ asset('js/swiper.min.js') }}"></script>
     <!-- swiper js -->

@@ -50,6 +50,18 @@ Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 's
 
 /*
 |--------------------------------------------------------------------------
+| Exams Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/course/{course}/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
+
+Route::get('/course/{course}/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
+
+
+
+/*
+|--------------------------------------------------------------------------
 | News Routes
 |--------------------------------------------------------------------------
 */
@@ -67,6 +79,10 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 */
 
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
+
+
+
+
 
 Route::get('/examList', function(){
     return view('examlist');
