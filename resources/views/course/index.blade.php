@@ -33,7 +33,7 @@
             </div>
             <div class="row">
                 @foreach($courses as $course)
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-6 col-lg-4 mb-4">
                     <div class="single_special_cource">
                         <img src="{{ asset('img/special_cource_1.png')}}" class="special_img" alt="">
                         <div class="special_cource_text">
@@ -53,11 +53,11 @@
                                 </div>
                                 <div class="author_rating">
                                     <div class="rating">
-                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                        <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                        <a href="#"><img src="img/icon/star.svg" alt=""></a>
+                                        <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
+                                        <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
+                                        <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
+                                        <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
+                                        <a href="#"><img src="{{ asset('img/icon/star.svg')}}" alt=""></a>
                                     </div>
                                     <p>3.8 Ratings</p>
                                 </div>
