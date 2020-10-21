@@ -116,3 +116,11 @@ Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'i
 Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
+
+/*
+|--------------------------------------------------------------------------
+| Question Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('question/store/',[App\Http\Controllers\QuestionController::class, 'store'])->name('question.store');
