@@ -18,6 +18,19 @@ class Role extends Model
 
     public function roleType()
     {
-        return $this->hasOne('App\Models\RoleType');
+        return $this->belongsTo('App\Models\RoleType');
     }
+
+    public function manageCourse(){
+        return $this->hasMany('App\Models\Course','role_id');
+    }
+
+    public function teachCourse(){
+        return $this->hasMany('App\Models\Teaching','user_id','user_id');
+    }
+
+    public function enrollCourse(){
+        return $this->hasMany('App\Models\EnrollCourse','user_id','user_id');
+    }
+
 }

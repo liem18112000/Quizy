@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Exam;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class ExamController extends Controller
@@ -12,9 +13,11 @@ class ExamController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course)
     {
-        //
+        return view('exam.index', [
+            'exams' => Exam::all(),
+        ]);
     }
 
     /**
@@ -24,7 +27,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        //
+        return view('exam.create');
     }
 
     /**
@@ -35,7 +38,18 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $exam = Exam::create([
+            'name'      => $request->name,
+            'allowed_time'     => $request->allowed_time,
+        ]);
+
+        if($exam){
+            alert()->success('Done', 'Exam saved successfully...');
+        }else{
+            alert()->error('Failed', 'Exam saved failed...');
+        }
+
+        return redirect()->route('exam.show', $exam);
     }
 
     /**
@@ -46,7 +60,9 @@ class ExamController extends Controller
      */
     public function show(Exam $exam)
     {
-        //
+        return view('exam.show', [
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -57,7 +73,9 @@ class ExamController extends Controller
      */
     public function edit(Exam $exam)
     {
-        //
+        return view('exam.edit', [
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -69,7 +87,17 @@ class ExamController extends Controller
      */
     public function update(Request $request, Exam $exam)
     {
-        //
+        $exam->update(
+            $request->all()
+        );
+
+        if ($exam) {
+            alert()->success('Done', 'Exam updated successfully...');
+        } else {
+            alert()->error('Failed', 'Exam updated failed...');
+        }
+
+        return redirect()->route('exam.show', $exam);
     }
 
     /**
