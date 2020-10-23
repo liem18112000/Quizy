@@ -12,7 +12,7 @@ class Question extends Model
 
     public function choices(){
 
-        return $this->hasMany('App\Models\Choice','question_id',"question_id");
+        return $this->hasMany('App\Models\Choice');
     }
 
     public function exam(){

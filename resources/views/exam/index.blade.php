@@ -18,7 +18,7 @@
                 <div class="breadcrumb_iner text-center">
                     <div class="breadcrumb_iner_item">
                         <h2>Exam List</h2>
-                        <p>Home<span>/</span>Exams</p>
+                        <p>Home<span>/</span>Course<span>/</span>Exams</p>
                     </div>
                 </div>
             </div>
@@ -41,48 +41,27 @@
             <table id="example" class="display" style="width:100%">
                 <thead class='thead-dark'>
                     <tr align="center">
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>UID</th>
+                        <th>Title</th>
+                        <th>Duration</th>
+                        <th>Allowed time</th>
+                        <th>Update at</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                    @foreach($exams as $exam)
+                    <tr align="center">
+                        <td>{{$exam->id}}</td>
+                        <td>{{$exam->title}}</td>
+                        <td>{{$exam->duration_min}}</td>
+                        <td>{{$exam->allow_time}}</td>
+                        <td>{{$exam->updated_at}}</td>
+                        <td>
+                            <a name="" id="" class="btn btn-primary btn-lg" href="{{route('exam.show', [$exam->course, $exam])}}" role="button"> Take exam</a>
+                        </td>
                     </tr>
-                    <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                    </tr>
-                    <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
-                    </tr>
-                    <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

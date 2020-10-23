@@ -22,7 +22,9 @@ class ChoiceFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'exam_id'       => '1',
+            'question_id'   => '1',
+            'description'   => $this->faker->sentence,
         ];
     }
 }

@@ -20,4 +20,9 @@ class Exam extends Model
     public function questions(){
         return $this->hasMany('App\Models\Question',"exam_id",'id');
     }
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
 }
