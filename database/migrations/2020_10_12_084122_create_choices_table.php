@@ -15,9 +15,9 @@ class CreateChoicesTable extends Migration
     {
         Schema::create('choices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("choice_id");
             $table->foreignId("exam_id");
             $table->foreignId("question_id");
+            $table->string('isTrue')->default('false');
             $table->longText("description");
             $table->string('status')->default('1');
             $table->timestamps();

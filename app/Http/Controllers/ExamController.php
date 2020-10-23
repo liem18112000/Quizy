@@ -59,7 +59,7 @@ class ExamController extends Controller
      * @param  \App\Models\Exam  $exam
      * @return \Illuminate\Http\Response
      */
-    public function show(Exam $exam)
+    public function show(Course $course, Exam $exam)
     {
         return view('exam.show', [
             'exam' => $exam

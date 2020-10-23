@@ -15,7 +15,7 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("question_id");
+            $table->foreignId("course_id");
             $table->foreignId("exam_id");
             $table->foreignId("answer_choice_id");
             $table->longText("description");
