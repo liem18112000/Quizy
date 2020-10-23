@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1964f6398332518bbdd9eb86ca1caaff87ce20bd
 @extends('layouts.exam')
 
 
@@ -42,47 +45,53 @@
             <table id="example" class="display" style="width:100%">
                 <thead class='thead-dark'>
                     <tr align="center">
-                        <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
-                        <th>Action</th>
+                        <th>Exam Title</th>
+						<th>Date & Time</th>
+						<th>Duration</th>
+						<th>Total Question</th>
+						<th>Right Answer Mark</th>
+						<th>Status</th>
+						<th>Enroll</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
+                        <td>Chapter 1</td>
+                        <td>23/11/2020</td>
+                        <td>25 minutes</td>
+                        <td>30</td>
+                        <td>+1</td>
+                        <td>on-going</td>
+                        <td>30 student</td>
+
+
                     </tr>
                     <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
+                        <td>Chapter 1</td>
+                        <td>23/11/2020</td>
+                        <td>25 minutes</td>
+                        <td>30</td>
+                        <td>+1</td>
+                        <td>on-going</td>
+                        <td>30 student</td>
                     </tr>
                     <tr>
-                        <td>Ashton Cox</td>
-                        <td>Junior Technical Author</td>
-                        <td>San Francisco</td>
-                        <td>66</td>
-                        <td>2009/01/12</td>
-                        <td>$86,000</td>
+                        <td>Chapter 1</td>
+                        <td>23/11/2020</td>
+                        <td>25 minutes</td>
+                        <td>30</td>
+                        <td>+1</td>
+                        <td>on-going</td>
+                        <td>30 student</td>
                     </tr>
                     <tr>
-                        <td>Cedric Kelly</td>
-                        <td>Senior Javascript Developer</td>
-                        <td>Edinburgh</td>
-                        <td>22</td>
-                        <td>2012/03/29</td>
-                        <td>$433,060</td>
+                        <td>Chapter 1</td>
+                        <td>23/11/2020</td>
+                        <td>25 minutes</td>
+                        <td>30</td>
+                        <td>+1</td>
+                        <td>on-going</td>
+                        <td>30 student</td>
                     </tr>
                 </tbody>
             </table>
@@ -96,31 +105,192 @@
         <!-- Modal content-->
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add New Category</h4>
+                <h4 class="modal-title">Add an exam</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
-                <form class="database_operation">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <label>Enter Category Name</label>
-
-                                <input type="text" required="required" name="name" placeholder="Enter Category Name"
-                                    class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <button class="btn btn-primary">Add</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Exam Title <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="online_exam_title" id="online_exam_title" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Exam Date & Time <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="online_exam_datetime" id="online_exam_datetime" class="form-control" readonly />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Exam Duration <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<select name="online_exam_duration" id="online_exam_duration" class="form-control">
+	                				<option value="">Select</option>
+	                				<option value="5">5 Minute</option>
+	                				<option value="30">30 Minute</option>
+	                				<option value="60">1 Hour</option>
+	                				<option value="120">2 Hour</option>
+	                				<option value="180">3 Hour</option>
+	                			</select>
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Total Question <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<select name="total_question" id="total_question" class="form-control">
+	                				<option value="">Select</option>
+	                				<option value="5">5 Question</option>
+	                				<option value="10">10 Question</option>
+	                				<option value="25">25 Question</option>
+	                				<option value="50">50 Question</option>
+	                				<option value="100">100 Question</option>
+	                				<option value="200">200 Question</option>
+	                				<option value="300">300 Question</option>
+	                			</select>
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Marks for Right Answer <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<select name="marks_per_right_answer" id="marks_per_right_answer" class="form-control">
+	                				<option value="">Select</option>
+	                				<option value="1">+1 Mark</option>
+	                				<option value="2">+2 Mark</option>
+	                				<option value="3">+3 Mark</option>
+	                				<option value="4">+4 Mark</option>
+	                				<option value="5">+5 Mark</option>
+	                			</select>
+	                		</div>
+            			</div>
+          			</div>
+          		</div>
             </div>
         </div>
 
-    </div>
+</div>
+
+<!--delete modal-->
+<div class="modal" id="deleteModal">
+  	<div class="modal-dialog">
+    	<div class="modal-content">
+
+      		<!-- Modal Header -->
+      		<div class="modal-header">
+        		<h4 class="modal-title">Delete Confirmation</h4>
+        		<button type="button" class="close" data-dismiss="modal">&times;</button>
+      		</div>
+
+      		<!-- Modal body -->
+      		<div class="modal-body">
+        		<h3 align="center">Are you sure you want to remove this?</h3>
+      		</div>
+
+      		<!-- Modal footer -->
+      		<div class="modal-footer">
+      			<button type="button" name="ok_button" id="ok_button" class="btn btn-primary btn-sm">OK</button>
+        		<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+      		</div>
+    	</div>
+  	</div>
+</div>
+
+
+<!--question modal-->
+
+<div class="modal" id="questionModal">
+  	<div class="modal-dialog modal-lg">
+    	<form method="post" id="question_form">
+      		<div class="modal-content">
+      			<!-- Modal Header -->
+        		<div class="modal-header">
+          			<h4 class="modal-title" id="question_modal_title"></h4>
+          			<button type="button" class="close" data-dismiss="modal">&times;</button>
+        		</div>
+
+        		<!-- Modal body -->
+        		<div class="modal-body">
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Question Title <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="question_title" id="question_title" autocomplete="off" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Option 1 <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="option_title_1" id="option_title_1" autocomplete="off" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Option 2 <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="option_title_2" id="option_title_2" autocomplete="off" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Option 3 <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="option_title_3" id="option_title_3" autocomplete="off" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Option 4 <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<input type="text" name="option_title_4" id="option_title_4" autocomplete="off" class="form-control" />
+	                		</div>
+            			</div>
+          			</div>
+          			<div class="form-group">
+            			<div class="row">
+              				<label class="col-md-4 text-right">Answer <span class="text-danger">*</span></label>
+	              			<div class="col-md-8">
+	                			<select name="answer_option" id="answer_option" class="form-control">
+	                				<option value="">Select</option>
+	                				<option value="1">1 Option</option>
+	                				<option value="2">2 Option</option>
+	                				<option value="3">3 Option</option>
+	                				<option value="4">4 Option</option>
+	                			</select>
+	                		</div>
+            			</div>
+          			</div>
+        		</div>
+
+	        	<!-- Modal footer -->
+	        	<div class="modal-footer">
+	        		<input type="hidden" name="question_id" id="question_id" />
+
+	        		<input type="hidden" name="online_exam_id" id="hidden_online_exam_id" />
+
+	        		<input type="hidden" name="page" value="question" />
+
+	        		<input type="hidden" name="action" id="hidden_action" value="Add" />
+
+	        		<input type="submit" name="question_button_action" id="question_button_action" class="btn btn-success btn-sm" value="Add" />
+
+	          		<button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
+	        	</div>
+        	</div>
+    	</form>
+  	</div>
 </div>
 
 @endsection
@@ -138,68 +308,3 @@ $('#example').DataTable();
 </script>
 
 @endsection
-
-=======
-@extends('layouts.app')
-
-
-@section('content')
-    <div class='container'>
-		<div class='row'>
-			<div class='col-lg-3 col-md-3 col-sm-12'>
-				<img src='quiz-neon-sign.jpg' style="width: 100%">
-				<div class='row'>
-					<div class="col-lg-12 mt-4">
-						<div class="card">
-							<div class="card-header">
-								<b>Nội dung</b>
-							</div>
-							<div class="card-body">
-								<h6 class="card-title">1.Đề thi 1</h6>
-								<h6 class="card-title">2.Đề thi 2</h6>
-								<h6 class="card-title">3.Đề thi 3</h6>
-								<h6 class="card-title">4.Đề thi 4</h6>
-							</div>
-							<div class="card-footer text-muted">
-							</div>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			<div class='col-lg-9 col-md-9 col-sm-12'>
-				<div class="card">
-					<div class="card-body">
-						<div class='row'>
-							<div class='col-lg-6 col-md-6 col-sm-6'>
-								<br><b>Đề thi trắc nghiệm môn hóa học năm 2020</b></br>
-								<br>Trạng thái: Đang diễn ra</br>
-								<br>Thời gian: 60 phút</br>
-							</div>
-							<div class='col-lg-6 col-md-6 col-sm-6'>
-								<br>Số câu: 60 câu</br>
-								<br>Lớp: 12</br>
-								<br> Môn học: Hóa học</br>
-								<a name="" id="" class="btn btn-primary" href="#" role="button">Làm bài</a>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<div class='row'>
-							<div class='col-lg-6 col-md-6 col-sm-6'>
-
-							</div>
-							<div class='col-lg-6 col-md-6 col-sm-6'>
-
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-@endsection
->>>>>>> main
