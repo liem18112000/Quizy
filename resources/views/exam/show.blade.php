@@ -5,7 +5,7 @@
         .float-panel{
             position: fixed;
             width: 20%;
-            top: 5vh;
+            top: 2vh;
             left: 5%;
         }
     </style>
@@ -14,16 +14,62 @@
 
 @section('content')
 
-    <div class="container-fluid" style='margin-top:5vh; margin-bottom:5vh'>
+    <div class="container-fluid" style='margin-top:2vh; margin-bottom:5vh'>
         <div class="row">
             <div class="col-lg-3">
                 <div class='float-panel'>
                     <div class="row">
+                        <div class='col-lg-12'>
+                            <div class="card mb-2">
+                                <div class="card-body">
+                                    <h4 class="card-title text-center">Thoi gian còn lại</h4>
+
+                                    <!-- Display the countdown timer in an element -->
+                                    <h2 id="demo" class='text-center'></h2>
+
+                                    <script>
+                                        // Set the date we're counting down to
+                                        var countDownDate = new Date("Oct 23, 2020 16:10:00").getTime();
+
+                                        // Update the count down every 1 second
+                                        var x = setInterval(function() {
+
+                                        // Get today's date and time
+                                        var now = new Date().getTime();
+
+                                        // Find the distance between now and the count down date
+                                        var distance = countDownDate - now;
+
+                                        // Time calculations for days, hours, minutes and seconds
+                                        var minutes = Math.floor(distance / (1000 * 60));
+                                        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                                        // Display the result in the element with id="demo"
+                                        document.getElementById("demo").innerHTML = minutes + " : " + seconds;
+
+                                        // If the count down is finished, write some text
+                                        if (distance < 0) {
+                                            clearInterval(x);
+                                            document.getElementById("demo").innerHTML = "EXPIRED";
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Hết thời gian',
+                                                text: 'Hoàn thành bài làm!'
+                                            });
+                                            window.location.href = "{{route('exam.index', $course)}}";
+                                        }
+                                        }, 1000);
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+
+
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
 
-                                    <h3 class="card-title text-center">Câu hỏi</h3>
+                                    <h4 class="card-title text-center">Câu hỏi</h4>
 
                                     @for($j = 0 ; $j < $questions->count() / 5 ; $j++)
                                     <div class='mt-2' style='display:flex; justify-content: space-evenly;'>
@@ -63,7 +109,7 @@
                 @endphp
 
                 @foreach($questions as $question)
-                <div class="row mt-4"> <!-- Cau hoi -->
+                <div class="row mt-2"> <!-- Cau hoi -->
                     <div class="col-lg-12">
                         <div class="card" >
                             <div class="card-body">
