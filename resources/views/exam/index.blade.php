@@ -40,7 +40,7 @@
         <div class="card-body">
             <table id="example" class="display" style="width:100%">
                 <thead class='thead-dark'>
-                    <tr align="center">
+                    <tr>
                         <th>UID</th>
                         <th>Title</th>
                         <th>Duration</th>
@@ -51,7 +51,7 @@
                 </thead>
                 <tbody>
                     @foreach($exams as $exam)
-                    <tr align="center">
+                    <tr>
                         <td>{{$exam->id}}</td>
                         <td>{{$exam->title}}</td>
                         <td>{{$exam->duration_min}}</td>

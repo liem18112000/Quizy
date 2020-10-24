@@ -97,9 +97,13 @@
                                 @endguest
 
                                 @auth
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="{{ route('home')}}">Role: {{Auth::user()->role}} </a>
+                                </li>
+
                                 <li class="nav-item dropdown">
 
-
+                                    
                                     <a class="nav-link dropdown-toggle btn_2" href="#" style='padding: 10px 30px;' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         {{Auth::user()->name}}
                                     </a>
