@@ -130,4 +130,4 @@ Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 
 |--------------------------------------------------------------------------
 */
 
-Route::get('question/store/',[App\Http\Controllers\QuestionController::class, 'store'])->name('question.store');
+
