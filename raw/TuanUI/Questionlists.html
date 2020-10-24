@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+	<title>Quizy!</title>
+
+
+  </head>
+  <body>
+    <div class='container'>
+		<div class='row'>
+			<div class='col-lg-3 col-md-3 col-sm-12'>
+				<img src='quiz-neon-sign.jpg' style="width: 100%">
+				<div class='row'>
+					<div class="col-lg-12 mt-4">
+						<div class="card">
+							<div class="card-header">
+								<b>Nội dung</b>
+							</div>
+							<div class="card-body">
+								<h6 class="card-title">1.Đề thi 1</h6>
+								<h6 class="card-title">2.Đề thi 2</h6>
+								<h6 class="card-title">3.Đề thi 3</h6>
+								<h6 class="card-title">4.Đề thi 4</h6>
+							</div>
+							<div class="card-footer text-muted">
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class='col-lg-9 col-md-9 col-sm-12'>
+				<div class="card">
+					<div class="card-body">
+						<div class='row'>
+							<div class='col-lg-6 col-md-6 col-sm-6'>
+								<br><b>Đề thi trắc nghiệm môn hóa học năm 2020</b></br>
+								<br>Trạng thái: Đang diễn ra</br>
+								<br>Thời gian: 60 phút</br>
+							</div>
+							<div class='col-lg-6 col-md-6 col-sm-6'>
+								<br>Số câu: 60 câu</br>
+								<br>Lớp: 12</br>
+								<br> Môn học: Hóa học</br>
+							
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<div class='row'>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Thêm câu hỏi</button>
+                    
+                            
+                            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Thêm câu hỏi</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                      <span aria-hidden="true">&times;</span>
+                                    </button>
+                                  </div>
+                                  <div class="modal-body">
+                                    <form>
+                                        <div class='row'>
+                                            <div class='col-12'>
+                                                <div class="form-group">
+                                                  <label for="">Tieu de cau hoi(*)</label>
+                                                  <input type="text" name="" id="" class="form-control" placeholder="Cau hoi ..." aria-describedby="helpId">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class='row'>
+                                            <div class='col-6'>
+                                                <div class="form-group">
+                                                    <label for="">Chu de(*)</label>
+                                                    <select class="form-control" name="" id="">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class='col-6'>
+                                                <div class="form-group">
+                                                    <label for="">do kho(*)</label>
+                                                    <select class="form-control" name="" id="">
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class='row'>
+                                            <div class='col-12'>
+                                                <div class="form-group">
+                                                  <label for="">Dang cau hoi(*)</label>
+                                                  <input type="text" name="" id="" class="form-control" placeholder="Cau hoi ..." aria-describedby="helpId">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <a name="" id="" class="btn btn-primary btn-block" href="#" role="button">Them dap an</a>
+
+                                        <div class="form-group">
+                                            <label for="">Nhap lioi giai</label>
+                                            <textarea class="form-control" name="" id="" rows="3"></textarea>
+                                        </div>
+                                    </form>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                                    <button type="button" class="btn btn-primary">Thêm đáp án</button>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

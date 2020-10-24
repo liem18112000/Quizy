@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" >
+	<title>Quizy!</title>
+
+
+  </head>
+  <body>
+    <div class='container-fluid'>
+		<div class='row'>
+			<div class='col-lg-3 col-md-3 col-sm-12'>
+				<img src='quiz-neon-sign.jpg' style="width: 100%">
+				<div class='row'>
+					<div class="col-lg-12 mt-4">
+						<div class="card">
+							<div class="card-header">
+								<b>Nội dung</b>
+							</div>
+							<div class="card-body">
+								<h6 class="card-title">Thi Thử</h6>
+								<h6 class="card-title">Trạng thái: Đang diễn ra</h6>
+								<h6 class="card-title">Thuộc đơn vị:HCMUS</h6>
+							</div>
+							<div class="card-footer text-muted">
+                                <div class="row">
+                                    <div class='col-lg-6 col-md-6 col-sm-6'>
+                                        <a name="" id="" class="btn btn-primary btn-block" href="#" role="button">Bảng điểm</a>
+                                    </div>
+                                    <div class='col-lg-6 col-md-6 col-sm-6'>
+                                        <a name="" id="" class="btn btn-primary btn-block" href="#" role="button">Thành viên</a>
+                                    </div>
+                                </div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			<div class='col-lg-9 col-md-9 col-sm-12'>
+				<div class="card">
+					<div class="card-body">
+                        <h5>Bảng điểm</h5>
+						<div class='row'>
+							<div class='col-lg-4 col-md-4 col-sm-4'>
+							    <div class="form-group">
+                                    <label for="name">Thí sinh</label>
+                                    <input type="text" name="name" id="name" class="form-control" placeholder="Họ tên/Tài khoản/Email/SĐT" aria-describedby="helpId">
+                                </div>
+                            <div class="form-group">
+                              <label for="">Sở giáo dục và đào tạo</label>
+                              <select class="form-control" name="" id="">
+                                <option>Chọn sở</option>
+                                <option>Sở GDDT 1</option>
+                                <option>Sở GDDT 2</option>
+                                <option>Sở GDDT 3</option>
+                              </select>
+                            </div>
+							</div>
+							<div class='col-lg-4 col-md-4 col-sm-4'>
+                                <div class="form-group">
+                                    <label for="">Môn học</label>
+                                    <select class="form-control" name="" id="">
+                                      <option>Chọn môn</option>
+                                      <option>Toán</option>
+                                      <option>Lý</option>
+                                      <option>Hóa</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Sở giáo dục và đào tạo</label>
+                                    <select class="form-control" name="" id="">
+                                      <option>Chọn phòng</option>
+                                      <option>Phòng 1</option>
+                                      <option>Phòng 2</option>
+                                      <option>Phòng 3</option>
+                                    </select>
+                                  </div>
+                            </div>
+                            <div class='col-lg-4 col-md-4 col-sm-4'>
+                                <div class="form-group">
+                                    <label for="">Đề thi</label>
+                                    <select class="form-control" name="" id="">
+                                      <option>Chọn đề thi</option>
+                                      <option>Đề 1</option>
+                                      <option>Đề 2</option>
+                                      <option>Đề 3</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="">Trường học</label>
+                                    <select class="form-control" name="" id="">
+                                      <option>Chọn trường</option>
+                                      <option>Trường A</option>
+                                      <option>Trường B</option>
+                                      <option>Trường C</option>
+                                    </select>
+                                  </div>
+							</div>
+						</div>
+					</div>
+				</div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class='row'>
+                                <div class='col-lg-12'>
+                                    <div class='card'>
+                                        <div class="card-body">
+                                            <table id="example" class="display" style="width:100%">
+                                                <thead class='thead-dark'>
+                                                    <tr align="center">
+                                                        <th>UID</th>
+                                                        <th>Title</th>
+                                                        <th>Duration</th>
+                                                        <th>Allowed time</th>
+                                                        <th>Update at</th>
+                                                        <th>Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                   
+                                                    <tr align="center">
+                                                        <td>1</td>
+                                                        <td>Mr.Tuan</td>
+                                                        <td>60</td>
+                                                        <td>60</td>
+                                                        <td>23/11/2020</td>
+                                                        <td>
+                                                            <a name="" id="" class="btn btn-primary btn-lg" href="" role="button"> Take exam</a>
+                                                        </td>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>		
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js" ></script> 
+        <script>
+        $('#example').DataTable();
+        </script>
+  </body>
+</html>
