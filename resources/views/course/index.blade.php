@@ -37,10 +37,9 @@
                     <div class="single_special_cource">
                         <img src="{{ asset('img/special_cource_1.png')}}" class="special_img" alt="">
                         <div class="special_cource_text">
-                            <a href="{{route('course.show', $course)}}" class="btn_4">Web Development</a>
-                            <h4>$130.00</h4>
-                            <a href="course-details.html">
-                                <h3>Web Development</h3>
+                            <a href="{{route('course.show', $course)}}" class="btn_4">{{$course->name}}</a>
+                            <a href="{{route('course.show', $course)}}">
+                                <h3>{{$course->name}}</h3>
                             </a>
                             <p>Which whose darkness saying were life unto fish wherein all fish of together called</p>
                             <div class="author_info">
@@ -67,6 +66,13 @@
                     </div>
                 </div>
                 @endforeach
+            </div>
+            <div class='row'>
+                <div class='col-12'>
+                    <div align='center'>
+                        {{ $courses->links( "pagination::bootstrap-4") }}
+                    </div>
+                </div>
             </div>
         </div>
     </section>

@@ -18,7 +18,7 @@ class Role extends Model
 
     public function roleType()
     {
-        return $this->belongsTo('App\Models\RoleType');
+        return $this->belongsTo('App\Models\RoleType', 'role_type_id', 'id');
     }
 
     public function manageCourse(){

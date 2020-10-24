@@ -28,6 +28,7 @@
 <!-- breadcrumb start-->
 
 <div class='container mt-4'>
+    
     <div class='card'>
         <div class="card-header" style='display:flex; justify-content: space-between;'>
             <h3 class="card-title">Course : {{$course->name}}</h3>

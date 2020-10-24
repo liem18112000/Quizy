@@ -21,9 +21,7 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 
 Auth::routes();
 
@@ -54,6 +52,8 @@ Route::get('login/{provider}/callback', [App\Http\Controllers\Auth\LoginControll
 */
 
 Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
+
+Route::get('/course/full', [App\Http\Controllers\CourseController::class, 'full'])->name('course.full');
 
 Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
 
@@ -123,3 +123,17 @@ Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'i
 Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+
+Route::get('/admin/table/user', [App\Http\Controllers\AdminController::class, 'tableUser'])->name('admin.table.user');
+
+Route::get('/admin/table/course', [App\Http\Controllers\AdminController::class, 'tableCourse'])->name('admin.table.course');
