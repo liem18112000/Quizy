@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use App\Models\Exam;
 use App\Models\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class QuestionController extends Controller
 {
@@ -13,9 +15,11 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Course $course, Exam $exam)
     {
-        //
+        return view('question.index', [
+            'questions' => Question::where('course_id', $course->id)->where('exam_id', $exam->id)->get()
+        ]);
     }
 
     /**
@@ -23,9 +27,12 @@ class QuestionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(Course $course, Exam $exam)
     {
-    
+        return view('question.create', [
+            'course' => $course,
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -53,25 +60,17 @@ class QuestionController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Question  $question
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Question $question)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Course $course, Exam $exam, Question $question)
     {
-        //
+        return view('question.edit', [
+            'course' => $course,
+            'exam' => $exam
+        ]);
     }
 
     /**
@@ -81,9 +80,22 @@ class QuestionController extends Controller
      * @param  \App\Models\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(Request $request,Course $course, Exam $exam, Question $question)
     {
-        //
+        $question->update([
+            'description'   => $request->description,
+            'exam_id'       => $exam->id,
+            'course_id'     => $course->id,
+        ]);
+
+        alert()->success('Update Question Successfully');
+
+        activity()
+            ->performedOn($question)
+            ->causedBy(Auth::user())
+            ->log('Question update');
+
+        return redirect()->route('question.index', [$course, $exam]);
     }
 
     /**
