@@ -34,13 +34,21 @@ class QuestionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Exam $exam)
+    public function store(Request $request, Course $course, Exam $exam)
     {
         $question = Question::create([
-            'description'      => $request->description,
-            'exam_id'     => $exam->id,
+            'description'   => $request->description,
+            'exam_id'       => $exam->id,
+            'course_id'     => $course->id,
         ]);
+
         alert()->success('Create Question Successfully');
+
+        activity()
+            ->performedOn($question)
+            ->causedBy(Auth::user())
+            ->log('New question create');
+
         return redirect()->route('question.show', $question);
     }
 
