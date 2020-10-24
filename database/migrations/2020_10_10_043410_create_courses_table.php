@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string("name");
+            $table->string("image")->nullable();
             $table->foreignId("admin_id");
             $table->foreignId("role_id");
             $table->string('status')->default('1');

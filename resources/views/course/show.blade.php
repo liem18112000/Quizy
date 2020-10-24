@@ -78,40 +78,8 @@
                         <div class="content">
                             <ul class="course_list">
                                 <li class="justify-content-between align-items-center d-flex">
-                                    <p>Introduction Lesson</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Basics of HTML</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Getting Know about HTML</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Tags and Attributes</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Basics of CSS</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Getting Familiar with CSS</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Introduction to Bootstrap</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Responsive Design</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
-                                </li>
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <p>Canvas in HTML 5</p>
-                                    <a class="btn_2 text-uppercase" href="#">View Details</a>
+                                    <p>Exam list</p>
+                                    <a class="btn_2 text-uppercase" href="{{route('exam.index', $course)}}">View Details</a>
                                 </li>
                             </ul>
                         </div>

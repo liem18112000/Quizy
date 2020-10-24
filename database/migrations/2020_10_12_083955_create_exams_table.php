@@ -17,6 +17,7 @@ class CreateExamsTable extends Migration
             $table->id();
             $table->string("title");
             $table->foreignId("user_id");
+            $table->foreignId("course_id");
             $table->dateTime("allow_time")->nullable();
             $table->integer("duration_min");
             $table->string('status')->default('1');

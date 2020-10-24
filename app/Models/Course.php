@@ -24,5 +24,13 @@ class Course extends Model
         return $this->hasMany('App\Models\EnrollCourse','course_id','id');
     }
 
-    
+    public function exams(){
+        return $this->hasMany('App\Models\Exam');
+    }
+
+    public function questions(){
+        return $this->hasMany('App\Models\Question');
+    }
+
+
 }
