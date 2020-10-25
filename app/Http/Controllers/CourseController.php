@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
@@ -23,7 +24,19 @@ class CourseController extends Controller
     public function index()
     {
         return view('course.index', [
-            'courses' => Course::all()
+            'courses' => Course::paginate(3)
+        ]);
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function full()
+    {
+        return view('course.full', [
+            'courses' => Course::paginate(6)
         ]);
     }
 

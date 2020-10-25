@@ -38,7 +38,7 @@
                         <div class="special_cource_text">
                             <a href=""><h3>{{$course->name}}</h3></a>
                             <p>UID: {{$course->id}}</p>
-                            <p>Date Created: {{$course->created_date}}</p>
+                            <p>Date Created: {{$course->cresated_date}}</p>
                             <p>Lecture:  </p>
                             <div class="text-center">
                             <a href="" class="btn_4">Join In</a>
@@ -48,6 +48,13 @@
                     </div>
                 </div>
             @endforeach
+            </div>
+            <div class='row'>
+                <div class='col-12'>
+                    <div align='center'>
+                        {{ $courses->links( "pagination::bootstrap-4") }}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
