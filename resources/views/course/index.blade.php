@@ -1,12 +1,4 @@
-@extends('layouts.exam')
-
-
-@section('styles')
-
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
-
-@endsection
-
+@extends('layouts.app')
 
 @section('content')
 
@@ -18,7 +10,7 @@
                 <div class="breadcrumb_iner text-center">
                     <div class="breadcrumb_iner_item">
                         <h2>Course List</h2>
-                        <p>Home<span>/</span>Course<span></p>
+                        <p>Home<span>/</span>Course</p>
                     </div>
                 </div>
             </div>
@@ -27,64 +19,44 @@
 </section>
 <!-- breadcrumb start-->
 
+
+    <!--::review_part start::-->
+    <section class="special_cource padding_top">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6" >
+                <div class="col-xl-5">
                     <div class="section_tittle text-center">
-                    <br>
-                        <h2>Course</h2>
+                        <h2>Courses</h2>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+            @foreach($courses as $course)
+                <div class="col-sm-6 col-lg-4">
+                    <div class="single_special_cource">
+                        <img src="img/special_cource_1.png" class="special_img" alt="">
+                        <div class="special_cource_text">
+                            <a href=""><h3>{{$course->name}}</h3></a>
+                            <p>UID: {{$course->id}}</p>
+                            <p>Date Created: {{$course->created_date}}</p>
+                            <p>Lecture:  </p>
+                            <div class="text-center">
+                            <a href="" class="btn_4">Join In</a>
+                            </div>
+                        </div>
 
-<div class='container mt-4' style="margin-bottom: 15px" >
-    <div class='card'>
-        <div class="card-body">
-            <table id="example" class="display" style="width:100%">
-                <thead class='thead-dark'>
-                    <tr>
-                        <th>UID</th>
-                        <th>Name</th>
-                        <th>Created at</th>
-                        <th>Lecturer</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($courses as $course)
-                    <tr>
-                        <td>{{$course->id}}</td>
-                        <td>{{$course->name}}</td>
-                        <td>{{$course->created_at}}</td>
-                        <td></td>
-                        <td>
-                            <a name="" id="" class="btn btn-primary btn-lg" href="{{route('exam.index', $course)}}" role="button"> Join In</a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    </div>
+                </div>
+            @endforeach
+            </div>
         </div>
-    </div>
+    </section>
+    <!--::blog_part end::-->
 
-</div>
+
+
+
 
 
 
 @endsection
-
-
-@section('scripts')
-
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-
-{{-- DataTable script --}}
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
-
-<script>
-$('#example').DataTable();
-</script>
-
-@endsection
-
