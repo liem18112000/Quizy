@@ -124,6 +124,10 @@ Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
 
+Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
+
+Route::get('/lecturer/table/course', [App\Http\Controllers\LecturerController::class, 'tableCourse'])->name('lecturer.table.course');
+
 
 
 /*

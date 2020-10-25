@@ -6,14 +6,17 @@ use App\Models\User as Lecturer;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Course;
+use App\Models\Role;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class LecturerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('lecturer');
+        // $this->middleware('auth');
+        // $this->middleware('lecturer');
     }
 
     public function export()
@@ -102,5 +105,20 @@ class LecturerController extends Controller
     public function destroy(Lecturer $lecturer)
     {
         //
+    }
+    public function dashboard()
+    {
+        
+
+        return view('lecturer.dashboard', [
+           
+        ]);
+    }
+  
+    public function tableCourse()
+    {
+        return view('lecturer.table.course', [
+            'courses'    => Course::all()
+        ]);
     }
 }
