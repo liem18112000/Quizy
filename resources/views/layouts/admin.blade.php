@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" href="{{ asset('img/favicon.png')}}">
+
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
@@ -51,9 +53,9 @@
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
-                        @if(Auth::user()->profile->bg)
+                        @if(Auth::user()->profile->profile_image)
                         <img class="img-responsive img-rounded"
-                            src="{{asset('storage')}}/USER_ID_{{Auth::user()->id}}/avatar/{{Auth::user()->profile->avatar}}"
+                            src="{{Auth::user()->profile->profile_image}}"
                             alt="User picture">
                         @else
                         <img class="img-responsive img-rounded"
@@ -107,7 +109,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('admin.table.course')}}">All Courses
+                                        <a href="{{route('admin.course')}}">Courses Management
                                             {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                                         </a>
                                     </li>
@@ -127,7 +129,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('admin.table.user')}}">All Users</a>
+                                        <a href="{{route('admin.user')}}">Users Management</a>
                                     </li>
 
                                     <li>

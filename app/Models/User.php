@@ -58,5 +58,15 @@ class User extends Authenticatable
         return $this->hasOne('App\Models\Profile');
     }
 
+    public function teach()
+    {
+        return $this->hasMany('App\Models\Teaching');
+    }
+
+    public function manage()
+    {
+
+    }
+
 
 }

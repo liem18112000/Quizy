@@ -10,6 +10,11 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+<<<<<<< HEAD
+=======
+    <link rel="icon" href="{{ asset('img/favicon.png')}}">
+
+>>>>>>> liemdev
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
@@ -51,9 +56,15 @@
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
+<<<<<<< HEAD
                         @if(Auth::user()->profile->bg)
                         <img class="img-responsive img-rounded"
                             src="{{asset('storage')}}/USER_ID_{{Auth::user()->id}}/avatar/{{Auth::user()->profile->avatar}}"
+=======
+                        @if(Auth::user()->profile->profile_image)
+                        <img class="img-responsive img-rounded"
+                            src="{{Auth::user()->profile->profile_image}}"
+>>>>>>> liemdev
                             alt="User picture">
                         @else
                         <img class="img-responsive img-rounded"
@@ -92,9 +103,15 @@
                             <span>General</span>
                         </li>
                         <li class="sidebar-dropdown">
+<<<<<<< HEAD
                             <a href="{{route('lecturer.dashboard')}}">
                                 <i class="fa fa-desktop"></i>
                                 <span>Dashboard</span>
+=======
+                            <a href="{{route('profile.show', Auth::user()->profile)}}">
+                                <i class="fa fa-user-circle    "></i>
+                                <span>Profile</span>
+>>>>>>> liemdev
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
                         </li>
@@ -107,12 +124,17 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
+<<<<<<< HEAD
                                         <a href="{{route('lecturer.table.course')}}">All Courses
+=======
+                                        <a href="{{route('admin.course')}}">Courses Management
+>>>>>>> liemdev
                                             {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                                         </a>
                                     </li>
 
                                     <li>
+<<<<<<< HEAD
                                         <a href="#">Enrolled Courses</a>
                                     </li>
                                 </ul>
@@ -160,6 +182,13 @@
                                 <span>Examples</span>
                             </a>
                         </li> --}} -->
+=======
+                                        <a href="#">Summary Charts</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+>>>>>>> liemdev
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->

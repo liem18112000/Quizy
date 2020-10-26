@@ -21,9 +21,11 @@ use Illuminate\Support\Facades\Auth;
 |--------------------------------------------------------------------------
 */
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+
 
 Auth::routes();
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -124,9 +126,19 @@ Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
 
+<<<<<<< HEAD
 Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
 
 Route::get('/lecturer/table/course', [App\Http\Controllers\LecturerController::class, 'tableCourse'])->name('lecturer.table.course');
+=======
+Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer');
+
+Route::get('/lecturer/course', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer.course');
+
+Route::get('/lecturer/course/{course}', [App\Http\Controllers\LecturerController::class, 'exams'])->name('lecturer.course.exam');
+
+Route::get('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\LecturerController::class, 'questions'])->name('lecturer.course.exam.question');
+>>>>>>> liemdev
 
 
 
@@ -136,8 +148,16 @@ Route::get('/lecturer/table/course', [App\Http\Controllers\LecturerController::c
 |--------------------------------------------------------------------------
 */
 
-Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
-Route::get('/admin/table/user', [App\Http\Controllers\AdminController::class, 'tableUser'])->name('admin.table.user');
+Route::get('/admin/user', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.user');
 
-Route::get('/admin/table/course', [App\Http\Controllers\AdminController::class, 'tableCourse'])->name('admin.table.course');
+Route::post('/admin/user', [App\Http\Controllers\AdminController::class, 'storeUser'])->name('admin.user.store');
+
+Route::post('/admin/course', [App\Http\Controllers\AdminController::class, 'storeCourse'])->name('admin.course.store');
+
+Route::get('/admin/course', [App\Http\Controllers\AdminController::class, 'courses'])->name('admin.course');
+
+Route::get('/admin/course/{course}', [App\Http\Controllers\AdminController::class, 'exams'])->name('admin.course.exam');
+
+Route::get('/admin/course/{course}/exam/{exam}', [App\Http\Controllers\AdminController::class, 'questions'])->name('admin.course.exam.question');

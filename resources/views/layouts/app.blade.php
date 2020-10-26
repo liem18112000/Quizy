@@ -110,6 +110,10 @@
 
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        @if(Auth::user()->roles->where('role_type_id', '3')->first())
+                                            <a class="dropdown-item" href="{{ route('admin.dashboard')}}">Admin Dashboard</a>
+                                            <div class='dropdown-divider'></div>
+                                        @endif
                                         <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->profile)}}">Profile</a>
                                         <div class='dropdown-divider'></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
