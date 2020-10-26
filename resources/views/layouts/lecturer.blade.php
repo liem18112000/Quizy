@@ -67,7 +67,7 @@
                         <span class="user-name">
                             <strong>{{Auth::user()->name}}</strong>
                         </span>
-                        <span class="user-role">Administrator</span>
+                        <span class="user-role">Lecturer</span>
                         <span class="user-status">
                             <i class="fa fa-circle"></i>
                             <span>Online</span>
@@ -94,9 +94,9 @@
                             <span>General</span>
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="{{route('admin.dashboard')}}">
-                                <i class="fa fa-desktop"></i>
-                                <span>Dashboard</span>
+                            <a href="{{route('profile.show', Auth::user()->profile)}}">
+                                <i class="fa fa-user-circle    "></i>
+                                <span>Profile</span>
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
                         </li>
@@ -120,83 +120,6 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-user"></i>
-                                <span>Users</span>
-                                {{-- <span class="badge badge-pill badge-danger">3</span> --}}
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="{{route('admin.user')}}">Users Management</a>
-                                    </li>
-
-                                    <li>
-                                        <a href="#">Summary Charts</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-reply" aria-hidden="true"></i>
-                                <span>Request</span>
-                                {{-- <span class="badge badge-pill badge-danger">3</span> --}}
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Pending</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Verified</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        <li class="sidebar-dropdown">
-                            <a href="#">
-                                <i class="fa fa-chart-line"></i>
-                                <span>Revenue</span>
-                                {{-- <span class="badge badge-pill badge-danger">3</span> --}}
-                            </a>
-                            <div class="sidebar-submenu">
-                                <ul>
-                                    <li>
-                                        <a href="#">Monthly Revenue</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Annual Revenue</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Overall Revenue</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
-                        {{-- <li class="header-menu">
-                            <span>Extra</span>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-book"></i>
-                                <span>Documentation</span>
-                                <span class="badge badge-pill badge-primary">Beta</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-calendar"></i>
-                                <span>Calendar</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-folder"></i>
-                                <span>Examples</span>
-                            </a>
-                        </li> --}}
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->

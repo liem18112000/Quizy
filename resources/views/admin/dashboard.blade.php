@@ -43,7 +43,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <a href='{{route('admin.table.course')}}' class="text-xs font-weight-bold text-info text-uppercase mb-1">Courses (Overall)</a>
+                            <a href='{{route('admin.course')}}' class="text-xs font-weight-bold text-info text-uppercase mb-1">Courses (Overall)</a>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$numberOfCourses}}</div>
                         </div>
                         <div class="col-auto">
@@ -59,9 +59,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href='#'>Pending Requests
+                            <a class="text-xs font-weight-bold text-warning text-uppercase mb-1" href='#'>Exams
                             </a>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$numberOfExams}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -110,7 +110,7 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <a href='{{route('admin.table.user')}}' class="text-xs font-weight-bold text-primary text-uppercase mb-1">Learners
+                            <a href='{{route('admin.user')}}' class="text-xs font-weight-bold text-primary text-uppercase mb-1">Students
                             </a>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{$numberOfUsers}}</div>
                         </div>
@@ -127,9 +127,9 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <a href='#' class="text-xs font-weight-bold text-success text-uppercase mb-1">Contributors
+                            <a href='#' class="text-xs font-weight-bold text-success text-uppercase mb-1">Lecturers
                             </a>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">5</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$numberOfLecturers}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-code fa-2x text-gray-300"></i>
@@ -144,8 +144,8 @@
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
-                            <a href='#' class="text-xs font-weight-bold text-info text-uppercase mb-1">Katas (Overall)</a>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10</div>
+                            <a href='#' class="text-xs font-weight-bold text-info text-uppercase mb-1">Admin</a>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{$numberOfAdmins}}</div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-book fa-2x text-gray-300"></i>

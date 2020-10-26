@@ -17,11 +17,13 @@ class IsLecturer
      */
     public function handle(Request $request, Closure $next)
     {
-        if (strtolower(Auth::user()->role->roleType->name) == 'lecturer')
-            return $next($request);
-        else {
-            alert()->warning('Permission denied, You are not allowed to access this resource');
-            return redirect()->back();
+        foreach (Auth::user()->roles as $role) {
+            if (strtolower($role->roleType->name) == 'lecturer') {
+                return $next($request);
+            }
         }
+
+        alert()->warning('Permission denied, You are not allowed to access this resource');
+        return redirect()->back();
     }
 }

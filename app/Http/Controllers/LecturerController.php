@@ -3,10 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User as Lecturer;
+use App\Models\Course;
+use App\Models\Exam;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LecturerController extends Controller
 {
@@ -28,79 +31,35 @@ class LecturerController extends Controller
         return redirect('/')->with('success', 'All good!');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function courses()
     {
-        //
+        $teachings = Auth::user()->roles->where('role_type_id', '2')->first()->teachCourse;
+
+        $courses = null;
+
+        foreach($teachings as $teaching){
+            $courses[] = $teaching->forCourse;
+        }
+
+        return view('lecturer.course', [
+            'courses'    => $courses
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function exams(Course $course)
     {
-        //
+        return view('lecturer.exam', [
+            'course'    => $course,
+            'exams'     => $course->exams,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function questions(Course $course, Exam $exam)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Lecturer  $lecturer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Lecturer $lecturer)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Lecturer  $lecturer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Lecturer $lecturer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Lecturer  $lecturer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Lecturer $lecturer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Lecturer  $lecturer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Lecturer $lecturer)
-    {
-        //
+        return view('lecturer.question', [
+            'course'    => $course,
+            'exam'     => $exam,
+            'questions'  => $exam->questions
+        ]);
     }
 }
