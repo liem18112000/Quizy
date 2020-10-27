@@ -19,7 +19,7 @@
     @yield('styles')
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <link rel="icon" href="{{ asset('img/favicon.png')}}">
     <!-- Bootstrap CSS -->
@@ -40,6 +40,12 @@
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
     <script src="{{ asset('js/sweetalert2.min.js')}}"></script>
+
+    @auth
+    @if(Auth::user()->setting && Auth::user()->setting->mode == '1')
+        <link href="{{ asset('css/dark-mode.css')}}" rel="stylesheet">
+    @endif
+    @endauth
 
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css')}}">
 
@@ -97,11 +103,12 @@
                                 @endguest
 
                                 @auth
+
                                 <li class="nav-item dropdown">
 
 
                                     <a class="nav-link dropdown-toggle btn_2" href="#" style='padding: 10px 30px;' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        {{Auth::user()->name}}
+                                        <strong>{{Auth::user()->roles->sortBy('role_type_id')->last()->roleType->name}}</strong> {{Auth::user()->name}}
                                     </a>
 
 
@@ -110,7 +117,19 @@
                                             <a class="dropdown-item" href="{{ route('admin.dashboard')}}">Admin Dashboard</a>
                                             <div class='dropdown-divider'></div>
                                         @endif
+                                        @if(Auth::user()->roles->where('role_type_id', '2')->first())
+                                            <a class="dropdown-item" href="{{ route('lecturer.dashboard')}}">Lecturer Dashboard</a>
+                                            <div class='dropdown-divider'></div>
+                                        @endif
                                         <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->profile)}}">Profile</a>
+                                        <div class='dropdown-divider'></div>
+
+                                        <a class="dropdown-item" href="{{ route('setting.mode')}}"
+                                        onclick="event.preventDefault();
+                                                        document.getElementById('mode-form').submit();">
+                                            {{ __('Change mode') }}
+                                        </a>
+
                                         <div class='dropdown-divider'></div>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
@@ -119,6 +138,10 @@
                                         </a>
 
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
+
+                                        <form id="mode-form" action='{{ route('setting.mode')}}' method='POST'>
                                             @csrf
                                         </form>
                                     </div>
@@ -198,7 +221,7 @@
                             <div class="col-lg-12">
                                 <p class="footer-text m-0">
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="ti-heart" aria-hidden="true"></i> by <a href="{{route('home')}}">Quizy</a>
                                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                                 </p>
                             </div>

@@ -15,7 +15,7 @@
                             <p>Replenish seasons may male hath fruit beast were seas saw you arrie said man beast whales
                                 his void unto last session for bite. Set have great you'll male grass yielding yielding
                                 man</p>
-                            <a href="#" class="btn_1">View Course </a>
+                            <a href="{{route('course.index')}}" class="btn_1">View Course </a>
                             <a href="#" class="btn_2">Get Started </a>
                         </div>
                     </div>

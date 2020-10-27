@@ -8,6 +8,10 @@
             top: 2vh;
             left: 5%;
         }
+
+        .border-red{
+            border: 3px solid red!important;
+        }
     </style>
 @endsection
 
@@ -28,8 +32,9 @@
                                     <h2 id="demo" class='text-center'></h2>
 
                                     <script>
+
                                         // Set the date we're counting down to
-                                        var countDownDate = new Date("Oct 23, 2020 16:10:00").getTime();
+                                        var countDownDate = new Date(new Date().getTime() + {{$doing->remain_time}} * 1000).getTime();
 
                                         // Update the count down every 1 second
                                         var x = setInterval(function() {
@@ -39,6 +44,7 @@
 
                                         // Find the distance between now and the count down date
                                         var distance = countDownDate - now;
+                                        window.value = distance / 1000;
 
                                         // Time calculations for days, hours, minutes and seconds
                                         var minutes = Math.floor(distance / (1000 * 60));
@@ -56,7 +62,7 @@
                                                 title: 'Hết thời gian',
                                                 text: 'Hoàn thành bài làm!'
                                             });
-                                            window.location.href = "{{route('exam.index', $course)}}";
+                                            document.getElementById('question-form').submit();
                                         }
                                         }, 1000);
                                     </script>
@@ -74,16 +80,35 @@
                                     @for($j = 0 ; $j < $questions->count() / 5 ; $j++)
                                     <div class='mt-2' style='display:flex; justify-content: space-evenly;'>
                                         @for($k = 0; $k < 5; $k++)
-                                            <a name="" id="" class="btn btn-dark" style='width: 48px' href="#" role="button">
+                                            <a name="" id="btn{{$j * 5 + $k + 1}}" class="btn
+
+                                            @if(isset($answer['choice' . ($j * 5 + $k + 1)]))
+                                                btn-success
+                                            @else
+                                                btn-outline-dark
+                                            @endif
+
+                                            @if(isset($answer['check' . ($j * 5 + $k + 1)]))
+                                                border-red
+                                            @endif
+                                            " style='width: 48px' href="#{{$j * 5 + $k + 1}}" role="button">
                                                 {{$j * 5 + $k + 1}}
                                             </a>
                                         @endfor
                                     </div>
                                     @endfor
 
-                                    <button type="submit" class="btn btn-primary mt-4 btn-block">Nộp Bài</button>
+                                    <a class="btn btn-primary mt-4 btn-block"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('time_remain').value = window.value;
+                                    document.getElementById('question-form').submit();" href='#'>Nộp Bài</a>
 
-                                    <a class="btn btn-secondary btn-block" href="{{route('exam.index', [$course])}}" role="button">Back</a>
+                                    <a class="btn btn-secondary btn-block"
+                                    onclick="event.preventDefault();
+                                    document.getElementById('time_remain').value = window.value;
+                                    document.getElementById('isPause').value = 'true';
+                                    document.getElementById('question-form').submit();" href='#'>Tạm ngưng</a>
+
                                 </div>
                             </div>
                         </div>
@@ -108,18 +133,38 @@
                     $cau = 1;
                 @endphp
 
+                <form action='{{ route('exam.submit', [$course, $exam, $doing])}}' method='POST' id='question-form'>
+                @csrf
+                    <input type='hidden' name='isPause' id='isPause' value='false'>
+                    <input type='hidden' name='time_remain' id='time_remain'>
                 @foreach($questions as $question)
                 <div class="row mt-2"> <!-- Cau hoi -->
                     <div class="col-lg-12">
                         <div class="card" >
-                            <div class="card-body">
+                            <div class="card-body" id='{{$cau}}'>
                                 <div style='display:flex; justify-content: space-between;'>
                                     <h4 class="card-title">Câu hỏi {{$cau}}</h4>
                                     <div class="form-check">
-                                      <label class="form-check-label">
-                                        <input type="checkbox" class="form-check-input" name="" id="" value="checkedValue">
+                                        <label class="form-check-label">
+                                        <script>
+                                            function onCheck(id)
+                                            {
+                                                document.getElementById(id).classList.add('border-red');
+                                            }
+
+                                            function onUnCheck(id)
+                                            {
+                                                document.getElementById(id).classList.remove('border-red');
+                                            }
+                                        </script>
+                                        <input type="checkbox" class="form-check-input" name="check{{$cau}}" id="check{{$cau}}" value="true"
+                                        onclick="if (this.checked) { onCheck('btn{{$cau}}') } else { onUnCheck('btn{{$cau}}') }"
+                                        @if(isset($answer['check' . $cau]))
+                                            checked
+                                        @endif
+                                        >
                                         Đánh dấu
-                                      </label>
+                                    </label>
                                     </div>
                                 </div>
                                 <p class="card-text">{{$question->description}}?</p>
@@ -133,8 +178,14 @@
 
                                 <!-- Group of default radios - option 1 -->
                                 <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultGroupExample{{$i}}" name="groupOfDefaultRadios">
-                                    <label class="custom-control-label" for="defaultGroupExample{{$i}}">{{$choice->description}}</label>
+                                    <input value='{{$i}}' type="radio" class="custom-control-input" id="{{$cau}}-choice-{{$i}}" name="choice{{$cau}}"
+                                    onclick="document.getElementById('btn{{$cau}}').classList.add('btn-success');
+                                    document.getElementById('btn{{$cau}}').classList.remove('btn-outline-dark')"
+                                    @if(isset($answer['choice' . $cau]) && $answer['choice' . $cau] == $i)
+                                        checked
+                                    @endif>
+
+                                    <label class="custom-control-label" for="{{$cau}}-choice-{{$i}}">{{$choice->description}}</label>
                                 </div>
 
                                 @php
@@ -147,30 +198,13 @@
                                     $cau++;
                                 @endphp
 
-                                {{-- <!-- Group of default radios - option 2 -->
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultGroupExample2" name="groupOfDefaultRadios" checked>
-                                    <label class="custom-control-label" for="defaultGroupExample2">Khủng long</label>
-                                </div>
-
-                                <!-- Group of default radios - option 3 -->
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultGroupExample3" name="groupOfDefaultRadios">
-                                    <label class="custom-control-label" for="defaultGroupExample3">Cá voi</label>
-                                </div>
-
-                                <!-- Group of default radios - option 4 -->
-                                <div class="custom-control custom-radio">
-                                    <input type="radio" class="custom-control-input" id="defaultGroupExample4" name="groupOfDefaultRadios">
-                                    <label class="custom-control-label" for="defaultGroupExample4">Liêm</label>
-                                </div> --}}
-
                             </div>
                         </div>
                     </div>
                 </div><!-- Cau hoi -->
                 @endforeach
-
+                </form>
+                </form>
 
             </div>
         </div>

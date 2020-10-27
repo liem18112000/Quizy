@@ -8,6 +8,8 @@ use App\Models\Exam;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\Role;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +17,8 @@ class LecturerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('lecturer');
+        // $this->middleware('auth');
+        // $this->middleware('lecturer');
     }
 
     public function export()
@@ -60,6 +62,21 @@ class LecturerController extends Controller
             'course'    => $course,
             'exam'     => $exam,
             'questions'  => $exam->questions
+        ]);
+    }
+    public function dashboard()
+    {
+
+
+        return view('lecturer.dashboard', [
+
+        ]);
+    }
+
+    public function tableCourse()
+    {
+        return view('lecturer.table.course', [
+            'courses'    => Course::all()
         ]);
     }
 }

@@ -33,6 +33,8 @@ Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->nam
 
 Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])->name('contact');
 
+Route::post('/setting/mode', [App\Http\Controllers\SettingController::class, 'mode'])->name('setting.mode');
+
 
 
 /*
@@ -57,6 +59,8 @@ Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->
 
 Route::get('/course/full', [App\Http\Controllers\CourseController::class, 'full'])->name('course.full');
 
+Route::post('/course/{course}/enroll', [App\Http\Controllers\CourseController::class, 'enroll'])->name('course.enroll');
+
 Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 'show'])->name('course.show');
 
 
@@ -70,6 +74,12 @@ Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 's
 Route::get('/course/{course}/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
 
 Route::get('/course/{course}/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
+
+Route::get('/course/{course}/exam/{exam}/resume', [App\Http\Controllers\ExamController::class, 'resume'])->name('exam.resume');
+
+Route::post('/course/{course}/exam/{exam}/doing/{doing}/submit', [App\Http\Controllers\ExamController::class, 'submit'])->name('exam.submit');
+
+Route::get('/course/{course}/exam/{exam}/doing/{doing}/result', [App\Http\Controllers\ExamController::class, 'result'])->name('exam.result');
 
 
 
@@ -126,13 +136,15 @@ Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
 
-Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer');
+Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer');
 
 Route::get('/lecturer/course', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer.course');
 
 Route::get('/lecturer/course/{course}', [App\Http\Controllers\LecturerController::class, 'exams'])->name('lecturer.course.exam');
 
 Route::get('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\LecturerController::class, 'questions'])->name('lecturer.course.exam.question');
+
+Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
 
 
 
@@ -142,7 +154,9 @@ Route::get('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\Lectur
 |--------------------------------------------------------------------------
 */
 
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::get('/admin', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin');
+
+Route::get('/admin/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 Route::get('/admin/user', [App\Http\Controllers\AdminController::class, 'users'])->name('admin.user');
 

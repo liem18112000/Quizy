@@ -28,57 +28,12 @@
                         <img class="img-fluid" src="{{ asset('img/single_cource.png')}}" alt="">
                     </div>
                     <div class="content_wrapper">
-                        <h4 class="title_top">Objectives</h4>
-                        <div class="content">
-                            When you enter into any new area of science, you almost always find yourself with a
-                            baffling new language of
-                            technical terms to learn before you can converse with the experts. This is certainly
-                            true in astronomy both in
-                            terms of terms that refer to the cosmos and terms that describe the tools of the trade,
-                            the most prevalent
-                            being the telescope.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </div>
-
-                        <h4 class="title">Eligibility</h4>
-                        <div class="content">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea commodo
-                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.
-                            <br>
-                            <br>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore
-                            magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-                            ut aliquip ex ea
-                            commodoconsequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                            cillum. Lorem ipsum dolor sit
-                            amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                            dolore magna aliqua. Ut enim
-                            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-                            commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit esse cillum.
-                        </div>
 
                         <h4 class="title">Course Outline</h4>
                         <div class="content">
                             <ul class="course_list">
                                 <li class="justify-content-between align-items-center d-flex">
-                                    <p>Exam list</p>
+                                    <h5>Exam list</h5>
                                     <a class="btn_2 text-uppercase" href="{{route('exam.index', $course)}}">View Details</a>
                                 </li>
                             </ul>
@@ -116,131 +71,14 @@
                             </li>
 
                         </ul>
-                        <a href="#" class="btn_1 d-block">Enroll the course</a>
-                    </div>
-
-                    <h4 class="title">Reviews</h4>
-                    <div class="content">
-                        <div class="review-top row pt-40">
-                            <div class="col-lg-12">
-                                <h6 class="mb-15">Provide Your Rating</h6>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span>Outstanding</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Puncuality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span>Outstanding</span>
-                                </div>
-                                <div class="d-flex flex-row reviews justify-content-between">
-                                    <span>Quality</span>
-                                    <div class="rating">
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                            <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                        </div>
-                                    <span>Outstanding</span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="feedeback">
-                            <h6>Your Feedback</h6>
-                            <textarea name="feedback" class="form-control" cols="10" rows="10"></textarea>
-                            <div class="mt-10 text-right">
-                                <a href="#" class="btn_1">Read more</a>
-                            </div>
-                        </div>
-                        <div class="comments-area mb-30">
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="{{ asset('img/cource/cource_1.png')}}" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Emilly Blunt</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
-                                                <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
-                                                <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
-                                                <a href="#"><img src="{{ asset('img/icon/color_star.svg')}}" alt=""></a>
-                                                <a href="#"><img src="{{ asset('img/icon/star.svg')}}" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/cource/cource_2.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Elsie Cunningham</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comment-list">
-                                <div class="single-comment single-reviews justify-content-between d-flex">
-                                    <div class="user justify-content-between d-flex">
-                                        <div class="thumb">
-                                            <img src="img/cource/cource_3.png" alt="">
-                                        </div>
-                                        <div class="desc">
-                                            <h5><a href="#">Maria Luna</a>
-                                            </h5>
-                                            <div class="rating">
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/color_star.svg" alt=""></a>
-                                                <a href="#"><img src="img/icon/star.svg" alt=""></a>
-                                            </div>
-                                            <p class="comment">
-                                                Blessed made of meat doesn't lights doesn't was dominion and sea earth
-                                                form
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @if(!Auth::user()->roles->where('role_type_id', '1')->first()->enrollCourse->first())
+                        <form action='{{ route('course.enroll', $course)}}' method='POST'>
+                            @csrf
+                            <button type="submit" class="btn_1 btn-block">Enroll Course</button>
+                        </form>
+                        @else
+                            <a href="javascript:void(0)" class="btn_1 btn-block" href="#" role="button"> Already Enrolled</a>
+                        @endif
                     </div>
                 </div>
             </div>

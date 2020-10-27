@@ -63,10 +63,9 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Teaching');
     }
 
-    public function manage()
+    public function setting()
     {
-
+        return $this->hasOne('App\Models\Setting');
     }
-
 
 }

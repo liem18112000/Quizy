@@ -28,16 +28,8 @@
 <!-- breadcrumb start-->
 
 <div class='container mt-4'>
-    
-    <div class='card'>
-        <div class="card-header" style='display:flex; justify-content: space-between;'>
-            <h3 class="card-title">Course : {{$course->name}}</h3>
 
-            <div class="card-tools">
-                <a class="btn btn-info btn-lg" href="javascript:;" data-toggle="modal"
-                    data-target="#myModal">Add New Exam</a>
-            </div>
-        </div>
+    <div class='card'>
         <div class="card-body">
             <table id="example" class="display" style="width:100%">
                 <thead class='thead-dark'>
@@ -55,11 +47,11 @@
                     <tr align="center">
                         <td>{{$exam->id}}</td>
                         <td>{{$exam->title}}</td>
-                        <td>{{$exam->duration_min}}</td>
+                        <td>{{$exam->duration_min}} minutes</td>
                         <td>{{$exam->allow_time}}</td>
                         <td>{{$exam->updated_at}}</td>
                         <td>
-                            <a name="" id="" class="btn btn-primary btn-lg" href="{{route('exam.show', [$exam->course, $exam])}}" role="button"> Take exam</a>
+                            <a name="" id="" class="btn_2" href="{{route('exam.show', [$exam->course, $exam])}}" role="button"> Take exam</a>
                         </td>
                     </tr>
                     @endforeach

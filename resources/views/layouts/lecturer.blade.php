@@ -34,6 +34,12 @@
    <link rel="stylesheet" type="text/css"
    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/kt-2.5.1/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sp-1.0.1/sl-1.3.1/datatables.min.css"/>
 
+    @auth
+    @if(Auth::user()->setting && Auth::user()->setting->mode == '1')
+        <link href="{{ asset('css/dark-mode.css')}}" rel="stylesheet">
+    @endif
+    @endauth
+
 </head>
 
 <body>
@@ -93,10 +99,11 @@
                         <li class="header-menu">
                             <span>General</span>
                         </li>
+
                         <li class="sidebar-dropdown">
-                            <a href="{{route('profile.show', Auth::user()->profile)}}">
-                                <i class="fa fa-user-circle    "></i>
-                                <span>Profile</span>
+                            <a href="{{route('lecturer.dashboard')}}">
+                                <i class="fa fa-desktop"></i>
+                                <span>Dashboard</span>
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
                         </li>
@@ -109,7 +116,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('admin.course')}}">Courses Management
+                                        <a href="{{route('lecturer.course')}}">Courses Management
                                             {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                                         </a>
                                     </li>
@@ -120,6 +127,48 @@
                                 </ul>
                             </div>
                         </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-user"></i>
+                                <span>Profile</span>
+                                {{-- <span class="badge badge-pill badge-danger">3</span> --}}
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('profile.show', Auth::user()->profile)}}">Manage Profile</a>
+                                    </li>
+
+                                    <!-- <li>
+                                        <a href="#">Summary Charts</a>
+                                    </li> -->
+                                </ul>
+                            </div>
+                        </li>
+
+
+                        <!-- {{-- <li class="header-menu">
+                            <span>Extra</span>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-book"></i>
+                                <span>Documentation</span>
+                                <span class="badge badge-pill badge-primary">Beta</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-calendar"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-folder"></i>
+                                <span>Examples</span>
+                            </a>
+                        </li> --}} -->
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->
