@@ -10,16 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     <link rel="icon" href="{{ asset('img/favicon.png')}}">
 
->>>>>>> liemdev
-=======
-    <link rel="icon" href="{{ asset('img/favicon.png')}}">
-
->>>>>>> liemdev
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
@@ -67,21 +59,9 @@
                 </div>
                 <div class="sidebar-header">
                     <div class="user-pic">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                        @if(Auth::user()->profile->bg)
-                        <img class="img-responsive img-rounded"
-                            src="{{asset('storage')}}/USER_ID_{{Auth::user()->id}}/avatar/{{Auth::user()->profile->avatar}}"
-=======
                         @if(Auth::user()->profile->profile_image)
                         <img class="img-responsive img-rounded"
                             src="{{Auth::user()->profile->profile_image}}"
->>>>>>> liemdev
-=======
-                        @if(Auth::user()->profile->profile_image)
-                        <img class="img-responsive img-rounded"
-                            src="{{Auth::user()->profile->profile_image}}"
->>>>>>> liemdev
                             alt="User picture">
                         @else
                         <img class="img-responsive img-rounded"
@@ -121,21 +101,9 @@
                         </li>
 
                         <li class="sidebar-dropdown">
-<<<<<<< HEAD
-<<<<<<< HEAD
                             <a href="{{route('lecturer.dashboard')}}">
                                 <i class="fa fa-desktop"></i>
                                 <span>Dashboard</span>
-=======
-                            <a href="{{route('profile.show', Auth::user()->profile)}}">
-                                <i class="fa fa-user-circle    "></i>
-                                <span>Profile</span>
->>>>>>> liemdev
-=======
-                            <a href="{{route('lecturer.dashboard')}}">
-                                <i class="fa fa-desktop"></i>
-                                <span>Dashboard</span>
->>>>>>> liemdev
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
                         </li>
@@ -148,26 +116,13 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <a href="{{route('lecturer.table.course')}}">All Courses
-=======
-                                        <a href="{{route('admin.course')}}">Courses Management
->>>>>>> liemdev
-=======
                                         <a href="{{route('lecturer.course')}}">Courses Management
->>>>>>> liemdev
                                             {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                                         </a>
                                     </li>
 
                                     <li>
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                        <a href="#">Enrolled Courses</a>
-=======
                                         <a href="#">Summary Charts</a>
->>>>>>> liemdev
                                     </li>
                                 </ul>
                             </div>
@@ -214,16 +169,6 @@
                                 <span>Examples</span>
                             </a>
                         </li> --}} -->
-<<<<<<< HEAD
-=======
-                                        <a href="#">Summary Charts</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </li>
->>>>>>> liemdev
-=======
->>>>>>> liemdev
                     </ul>
                 </div>
                 <!-- sidebar-menu  -->

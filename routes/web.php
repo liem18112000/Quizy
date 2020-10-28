@@ -136,28 +136,16 @@ Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 
 
 Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
 
-Route::get('/lecturer/table/course', [App\Http\Controllers\LecturerController::class, 'tableCourse'])->name('lecturer.table.course');
-=======
-Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer');
-=======
-Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer');
->>>>>>> liemdev
 
 Route::get('/lecturer/course', [App\Http\Controllers\LecturerController::class, 'courses'])->name('lecturer.course');
 
 Route::get('/lecturer/course/{course}', [App\Http\Controllers\LecturerController::class, 'exams'])->name('lecturer.course.exam');
 
 Route::get('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\LecturerController::class, 'questions'])->name('lecturer.course.exam.question');
-<<<<<<< HEAD
->>>>>>> liemdev
-=======
 
 Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
->>>>>>> liemdev
+
 
 
 
