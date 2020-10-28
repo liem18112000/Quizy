@@ -19,7 +19,7 @@
     @yield('styles')
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> --}}
 
     <link rel="icon" href="{{ asset('img/favicon.png')}}">
     <!-- Bootstrap CSS -->
@@ -43,6 +43,11 @@
 
     <link rel="stylesheet" href="{{ asset('css/sweetalert2.min.css')}}">
 
+    @auth
+    @if(Auth::user()->setting && Auth::user()->setting->mode == '1')
+        <link href="{{ asset('css/dark-mode.css')}}" rel="stylesheet">
+    @endif
+    @endauth
 
 
 </head>

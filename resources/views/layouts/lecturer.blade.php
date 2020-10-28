@@ -11,6 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    <link rel="icon" href="{{ asset('img/favicon.png')}}">
+
+>>>>>>> liemdev
 =======
     <link rel="icon" href="{{ asset('img/favicon.png')}}">
 
@@ -37,6 +42,12 @@
    <link rel="stylesheet" type="text/css"
    href="https://cdn.datatables.net/v/bs4/jszip-2.5.0/dt-1.10.20/af-2.3.4/b-1.6.1/b-colvis-1.6.1/b-flash-1.6.1/b-html5-1.6.1/b-print-1.6.1/cr-1.5.2/fc-3.3.0/fh-3.1.6/kt-2.5.1/r-2.2.3/rg-1.1.1/rr-1.2.6/sc-2.0.1/sp-1.0.1/sl-1.3.1/datatables.min.css"/>
 
+    @auth
+    @if(Auth::user()->setting && Auth::user()->setting->mode == '1')
+        <link href="{{ asset('css/dark-mode.css')}}" rel="stylesheet">
+    @endif
+    @endauth
+
 </head>
 
 <body>
@@ -57,9 +68,15 @@
                 <div class="sidebar-header">
                     <div class="user-pic">
 <<<<<<< HEAD
+<<<<<<< HEAD
                         @if(Auth::user()->profile->bg)
                         <img class="img-responsive img-rounded"
                             src="{{asset('storage')}}/USER_ID_{{Auth::user()->id}}/avatar/{{Auth::user()->profile->avatar}}"
+=======
+                        @if(Auth::user()->profile->profile_image)
+                        <img class="img-responsive img-rounded"
+                            src="{{Auth::user()->profile->profile_image}}"
+>>>>>>> liemdev
 =======
                         @if(Auth::user()->profile->profile_image)
                         <img class="img-responsive img-rounded"
@@ -102,7 +119,9 @@
                         <li class="header-menu">
                             <span>General</span>
                         </li>
+
                         <li class="sidebar-dropdown">
+<<<<<<< HEAD
 <<<<<<< HEAD
                             <a href="{{route('lecturer.dashboard')}}">
                                 <i class="fa fa-desktop"></i>
@@ -111,6 +130,11 @@
                             <a href="{{route('profile.show', Auth::user()->profile)}}">
                                 <i class="fa fa-user-circle    "></i>
                                 <span>Profile</span>
+>>>>>>> liemdev
+=======
+                            <a href="{{route('lecturer.dashboard')}}">
+                                <i class="fa fa-desktop"></i>
+                                <span>Dashboard</span>
 >>>>>>> liemdev
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
@@ -125,9 +149,13 @@
                                 <ul>
                                     <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <a href="{{route('lecturer.table.course')}}">All Courses
 =======
                                         <a href="{{route('admin.course')}}">Courses Management
+>>>>>>> liemdev
+=======
+                                        <a href="{{route('lecturer.course')}}">Courses Management
 >>>>>>> liemdev
                                             {{-- <span class="badge badge-pill badge-success">Pro</span> --}}
                                         </a>
@@ -135,7 +163,11 @@
 
                                     <li>
 <<<<<<< HEAD
+<<<<<<< HEAD
                                         <a href="#">Enrolled Courses</a>
+=======
+                                        <a href="#">Summary Charts</a>
+>>>>>>> liemdev
                                     </li>
                                 </ul>
                             </div>
@@ -149,7 +181,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="{{route('profile.show', 'Auth::user()->profile)')}}">Manage Profile</a>
+                                        <a href="{{route('profile.show', Auth::user()->profile)}}">Manage Profile</a>
                                     </li>
 
                                     <!-- <li>
@@ -182,12 +214,15 @@
                                 <span>Examples</span>
                             </a>
                         </li> --}} -->
+<<<<<<< HEAD
 =======
                                         <a href="#">Summary Charts</a>
                                     </li>
                                 </ul>
                             </div>
                         </li>
+>>>>>>> liemdev
+=======
 >>>>>>> liemdev
                     </ul>
                 </div>

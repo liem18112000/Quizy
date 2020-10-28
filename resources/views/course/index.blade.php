@@ -37,11 +37,12 @@
                         <img src="img/special_cource_1.png" class="special_img" alt="">
                         <div class="special_cource_text">
                             <a href=""><h3>{{$course->name}}</h3></a>
-                            <p>UID: {{$course->id}}</p>
-                            <p>Date Created: {{$course->cresated_date}}</p>
-                            <p>Lecture:  </p>
+                            <hr/>
+                            <h5>Date Created: {{$course->updated_at}}</h5>
+                            <h5>Lecture: </h5>
+                            <hr/>
                             <div class="text-center">
-                            <a href="" class="btn_4">Join In</a>
+                            <a href="{{route('course.show', $course)}}" class="btn_2 btn-block">Explore</a>
                             </div>
                         </div>
 

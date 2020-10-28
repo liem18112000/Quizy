@@ -19,8 +19,9 @@ class CreateDoingExamsTable extends Migration
             $table->foreignId("course_id");
             $table->foreignId("user_id");
             $table->foreignId("role_type_id");
+            $table->longText('answer')->nullable();
             $table->unsignedSmallInteger("grade")->nullable();
-            $table->dateTime("begin_time")->nullable()->nullable();
+            $table->unsignedBigInteger("remain_time")->nullable();
             $table->string('status')->default('1');
             $table->timestamps();
 

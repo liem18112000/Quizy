@@ -8,7 +8,6 @@ use App\Models\Exam;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
-use App\Models\Course;
 use App\Models\Role;
 use App\Models\Profile;
 use Illuminate\Http\Request;
@@ -67,13 +66,13 @@ class LecturerController extends Controller
     }
     public function dashboard()
     {
-        
+
 
         return view('lecturer.dashboard', [
-           
+
         ]);
     }
-  
+
     public function tableCourse()
     {
         return view('lecturer.table.course', [
