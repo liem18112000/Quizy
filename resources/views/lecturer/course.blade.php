@@ -51,7 +51,6 @@
                             function PreviewImage() {
                                 var fileReader = new FileReader();
                                 fileReader.readAsDataURL(document.getElementById("media").files[0]);
-
                                 fileReader.onload = function (fileEvent) {
                                     document.getElementById("reviewImage").src = fileEvent.target.result;
                                 };
