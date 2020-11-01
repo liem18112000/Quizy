@@ -113,11 +113,11 @@
 
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        @if(Auth::user()->roles->where('role_type_id', '3')->first())
+                                        @if(Auth::user()->roles->where('role_type_id', 1))
                                             <a class="dropdown-item" href="{{ route('admin.dashboard')}}">Admin Dashboard</a>
                                             <div class='dropdown-divider'></div>
                                         @endif
-                                        @if(Auth::user()->roles->where('role_type_id', '2')->first())
+                                        @if(Auth::user()->roles->first()->roleType->where('role_type_id',2))
                                             <a class="dropdown-item" href="{{ route('lecturer.dashboard')}}">Lecturer Dashboard</a>
                                             <div class='dropdown-divider'></div>
                                         @endif
