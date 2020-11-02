@@ -78,8 +78,7 @@
                 <div class="col-md-5 col-lg-5">
                     <div class="learning_member_text">
                         <h5>About us</h5>
-                        <h2>Learning with Love
-                            and Laughter</h2>
+                        <h2>Online Exam Software</h2>
                         <p>Fifth saying upon divide divide rule for deep their female all hath brind Days and beast
                             greater grass signs abundantly have greater also
                             days years under brought moveth.</p>
@@ -97,38 +96,7 @@
     </section>
     <!-- learning part end-->
 
-    <!-- member_counter counter start -->
-    <section class="member_counter">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1024</span>
-                        <h4>All Teachers</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">960</span>
-                        <h4> All Students</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">1020</span>
-                        <h4>Online Students</h4>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-sm-6">
-                    <div class="single_member_counter">
-                        <span class="counter">820</span>
-                        <h4>Ofline Students</h4>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- member_counter counter end -->
+
 
     <!--::review_part start::-->
     <section class="testimonial_part section_padding">
@@ -136,8 +104,7 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5">
                     <div class="section_tittle text-center">
-                        <p>tesimonials</p>
-                        <h2>Happy Students</h2>
+                        <h4>Team Members</h4>
                     </div>
                 </div>
             </div>
@@ -148,11 +115,9 @@
                             <div class="row">
                                 <div class="col-lg-8 col-xl-4 col-sm-8 align-self-center">
                                     <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        
+                                        <h4>Doan Van Thanh Liem</h4>
+                                        <h5>Full Stack Developer - Project Manager</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
@@ -162,11 +127,9 @@
                                 </div>
                                 <div class="col-xl-4 d-none d-xl-block">
                                     <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                      
+                                        <h4>Do Phuong Nhat Minh</h4>
+                                        <h5>Full Stack Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 d-none d-xl-block">
@@ -180,11 +143,9 @@
                             <div class="row">
                                 <div class="col-lg-8 col-xl-4 col-sm-8 align-self-center">
                                     <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                       
+                                        <h4>Tran Gia Hoa</h4>
+                                        <h5>Database Adminstator - Back End Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
@@ -194,11 +155,9 @@
                                 </div>
                                 <div class="col-xl-4 d-none d-xl-block">
                                     <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        
+                                        <h4>Nguyen Vu Anh Thu</h4>
+                                        <h5>Front End Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 d-none d-xl-block">
@@ -212,11 +171,9 @@
                             <div class="row">
                                 <div class="col-lg-8 col-xl-4 col-sm-8 align-self-center">
                                     <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        
+                                        <h4>Doan Minh Tuan</h4>
+                                        <h5>Front End Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
@@ -224,20 +181,8 @@
                                         <img src="img/testimonial_img_1.png" alt="#">
                                     </div>
                                 </div>
-                                <div class="col-xl-4 d-none d-xl-block">
-                                    <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 d-none d-xl-block">
-                                    <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>

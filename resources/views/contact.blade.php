@@ -46,7 +46,7 @@
             }
 
             </script>
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&callback=initMap"></script>
+            <script src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.6311113999163!2d106.68006841480064!3d10.76288699233072!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f19554afa79%3A0x961af94a35c6f42!2zVHJ1bmcgdMOibSBUaW4gaOG7jWMgdHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBLaG9hIGjhu41jIFThu7Egbmhpw6puLCAyMjcgxJAuIE5ndXnhu4VuIFbEg24gQ-G7qywgUGjGsOG7nW5nIDQsIFF14bqtbiA1LCBUaMOgbmggcGjhu5EgSOG7kyBDaMOtIE1pbmg!5e0!3m2!1svi!2s!4v1604218634839!5m2!1svi!2s"></script>
 
         </div>
 
@@ -89,21 +89,21 @@
             <div class="media contact-info">
                 <span class="contact-info__icon"><i class="ti-home"></i></span>
                 <div class="media-body">
-                <h3>Buttonwood, California.</h3>
-                <p>Rosemead, CA 91770</p>
+                <h3>Ho Chi Minh City</h3>
+                <p>227 Nguyen Van Cu</p>
                 </div>
             </div>
             <div class="media contact-info">
                 <span class="contact-info__icon"><i class="ti-tablet"></i></span>
                 <div class="media-body">
-                <h3>00 (440) 9865 562</h3>
-                <p>Mon to Fri 9am to 6pm</p>
+                <h3>Quizy Team</h3>
+                <p>ITEC</p>
                 </div>
             </div>
             <div class="media contact-info">
                 <span class="contact-info__icon"><i class="ti-email"></i></span>
                 <div class="media-body">
-                <h3>support@colorlib.com</h3>
+                <h3>quizy@hostinger.com</h3>
                 <p>Send us your query anytime!</p>
                 </div>
             </div>
