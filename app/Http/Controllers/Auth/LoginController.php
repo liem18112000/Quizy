@@ -33,7 +33,8 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+    // protected $redirectTo = RouteServiceProvider::HOME;
+    protected $redirectTo = '/main-dashboard';
 
     /**
      * Create a new controller instance.
@@ -66,6 +67,8 @@ class LoginController extends Controller
 
         $user = null;
 
+        $hasEmail = true;
+
         if ($providerUser->email != null) {
             $user = User::where('email', $providerUser->email)
             ->where('name', $providerUser->name)
@@ -75,6 +78,7 @@ class LoginController extends Controller
             $user = User::where('name', $providerUser->name)
                 ->where('provider', $provider)
                 ->first();
+            $hasEmail = false;
         }
 
         if (!$user) {
@@ -122,14 +126,21 @@ class LoginController extends Controller
             }
         }
 
-        alert()->success('Login sucess!', 'Welcome to Quizy!');
-
         Auth::login($user, true);
 
         activity()
             ->performedOn($user)
             ->causedBy($user)
             ->log('OAuth session success');
+
+        if(!$hasEmail)
+        {
+            alert()->success('Login sucess!', 'Welcome to Quizy! Please update your email in your profile');
+
+            return redirect()->route('profile.show', Auth::user()->profile);
+        }
+
+        alert()->success('Login sucess!', 'Welcome to Quizy!');
 
         return redirect($this->redirectTo);
     }

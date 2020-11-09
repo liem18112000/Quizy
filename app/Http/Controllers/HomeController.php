@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Course;
+use App\Models\Exam;
+use App\Models\Role;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +27,12 @@ class HomeController extends Controller
      */
     public function about()
     {
-        return view('about');
+        return view('about',[
+            'courses'   => Course::all()->count(),
+            'exams'     => Exam::all()->count(),
+            'users'     => User::all()->count(),
+            'teachers'  => Role::where('role_type_id', '2')->count()
+        ]);
     }
 
     /**

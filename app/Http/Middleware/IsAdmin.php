@@ -23,7 +23,7 @@ class IsAdmin
             }
         }
 
-        alert()->warning('Permission denied, You are not allowed to access this resource');
+        alert()->warning('Permission denied', 'You are not allowed to access this resource');
         return redirect()->back();
 
     }

@@ -47,7 +47,6 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\Role');
     }
 
-
     public function news()
     {
         return $this->hasMany('App\Models\News');
@@ -66,6 +65,11 @@ class User extends Authenticatable
     public function setting()
     {
         return $this->hasOne('App\Models\Setting');
+    }
+
+    public function requests()
+    {
+        return $this->hasMany('App\Models\UserRequest');
     }
 
 }

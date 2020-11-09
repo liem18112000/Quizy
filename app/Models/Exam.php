@@ -25,4 +25,9 @@ class Exam extends Model
     {
         return $this->belongsTo('App\Models\Course');
     }
+
+    public function examType()
+    {
+        return $this->belongsTo('App\Models\ExamType');
+    }
 }

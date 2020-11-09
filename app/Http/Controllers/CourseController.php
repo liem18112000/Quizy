@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Role;
 use App\Models\EnrollCourse as Enroll;
 use Illuminate\Http\Request;
+use App\Imports\CourseImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
@@ -14,6 +16,25 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function import(Request $request)
+    {
+        $dataTime = date('Ymd_His');
+
+        $file = $request->file('file');
+
+        $fileName = $dataTime . '-' . $file->getClientOriginalName();
+
+        $savePath = public_path('/import/');
+
+        $file->move($savePath, $fileName);
+
+        Excel::import(new CourseImport, $savePath . $fileName);
+
+        alert()->success('Done', 'Course import successfully');
+
+        return redirect()->back();
     }
 
 
@@ -25,18 +46,6 @@ class CourseController extends Controller
     public function index()
     {
         return view('course.index', [
-            'courses' => Course::paginate(3)
-        ]);
-    }
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function full()
-    {
-        return view('course.full', [
             'courses' => Course::paginate(6)
         ]);
     }
@@ -99,7 +108,7 @@ class CourseController extends Controller
 
         alert()->success('Done', 'You have successfully enrolled this course!');
 
-        return redirect()->route('exam.index', $course);
+        return redirect()->route('student.course.exam', $course);
 
     }
 

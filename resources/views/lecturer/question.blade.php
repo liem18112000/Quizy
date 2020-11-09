@@ -11,57 +11,54 @@
     <!-- Button trigger modal -->
     <div style='padding-left: 40px;'>
         <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modelId">
+            <i class="fa fa-plus" aria-hidden="true"></i>
             Add Question
         </button>
-        <a name="" id="" class="btn btn-secondary" href="{{ route('lecturer.course.exam', $course)}}" role="button">Back</a>
+        <a name="" id="" class="btn btn-secondary" href="{{ route('lecturer.course.exam', [$course])}}" role="button">Back</a>
     </div>
 
     <!-- Modal -->
-    <form method="POST" action="{{ route('admin.course.store')}}" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('lecturer.course.exam.question.store', [$course, $exam])}}" enctype="multipart/form-data">
         @csrf
         <div class="modal fade" id="modelId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Course Create</h5>
+                        <h5 class="modal-title">Question Create</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="form-group">
-                            <label for="name" class="col-form-label">{{ __('Name') }}</label>
-
-                            <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                            @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                       <div class="form-group">
+                            <label for="description">Question</label>
+                            <input type="text" name="description" id="description" class="form-control" placeholder="Enter your question ..." aria-describedby="helpId">
                         </div>
 
-                        <div class="form-group">
-                            <label for="media">Upload course image</label>
-                            <input type="file" class="form-control-file" name="image" id="media" placeholder="Choose a file to upload">
-                        </div>
-
-                        <div class="form-group mt-4">
-                            <div class="row">
-                                <img style='object-fit:contain; width: 100%; height: 100%;' id="reviewImage"class="avatar-profile" alt="">
+                        @if($exam->examType->id == '1')
+                        <hr/>
+                        @for($i = 0; $i < 4; $i++)
+                            <div class="form-group">
+                                <label for="choice{{$i}}">Choice {{$i + 1}} : </label>
+                                <input type="text" name="choice{{$i}}" id="choice{{$i}}" class="form-control" placeholder="" aria-describedby="helpId">
                             </div>
+                        @endfor
+
+                        <div class="form-group">
+                            <label for="">Answer : </label>
+                            <select class="form-control" name="answer" id="answer">
+                                <option value='0'>Choice 1</option>
+                                <option value='1'>Choice 2</option>
+                                <option value='2'>Choice 3</option>
+                                <option value='3'>Choice 4</option>
+                            </select>
                         </div>
-
-                        <script type="text/javascript">
-                            function PreviewImage() {
-                                var fileReader = new FileReader();
-                                fileReader.readAsDataURL(document.getElementById("media").files[0]);
-
-                                fileReader.onload = function (fileEvent) {
-                                    document.getElementById("reviewImage").src = fileEvent.target.result;
-                                };
-                            };
-                        </script>
+                        @elseif($exam->examType->id == '2')
+                        <div class="form-group">
+                            <label for="time">Marks</label>
+                            <input type="number" name="mark" id="duration" class="form-control" value='1' min='1' max='10' step='0.5' aria-describedby="helpId">
+                        </div>
+                        @endif
                     </div>
                     <div class="modal-footer">
                         <div class="container-fluid">
@@ -87,7 +84,11 @@
             <tr>
                 <th>ID</th>
                 <th>Content</th>
+                @if($exam->examType->id == '1')
                 <th>Choices</th>
+                @elseif($exam->examType->id == '2')
+                <th>Marks</th>
+                @endif
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -98,6 +99,7 @@
                 <td>
                     {{$question->description}}
                 </td>
+                @if($exam->examType->id == '1')
                 <td style='min-width: 30vw; padding: 0'>
                     <table class="table" style='margin: 0'>
                         <tbody>
@@ -114,8 +116,10 @@
                             @endforeach
                         </tbody>
                     </table>
-
                 </td>
+                @elseif($exam->examType->id == '2')
+                    <td>{{$question->answer_choice_id}}</td>
+                @endif
                 <td class='text-center' style='padding-top: 10px;'>
                     <a name="" id="" class="mx-1 btn btn-danger" href="#" role="button">Disable</a>
                 </td>
@@ -126,8 +130,11 @@
             <tr>
                 <th>ID</th>
                 <th>Content</th>
-                <th>AnswerChoiceId</th>
+                 @if($exam->examType->id == '1')
                 <th>Choices</th>
+                @elseif($exam->examType->id == '2')
+                <th>Marks</th>
+                @endif
                 <th>&nbsp;</th>
             </tr>
         </tfoot>

@@ -35,6 +35,10 @@ Route::get('/contact', [App\Http\Controllers\HomeController::class, 'contact'])-
 
 Route::post('/setting/mode', [App\Http\Controllers\SettingController::class, 'mode'])->name('setting.mode');
 
+Route::get('/main-dashboard', function(){
+    return view('main-dashboard');
+})->name('main-dashboard');
+
 
 
 /*
@@ -55,9 +59,9 @@ Route::get('login/{provider}/callback', [App\Http\Controllers\Auth\LoginControll
 |--------------------------------------------------------------------------
 */
 
-Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
+Route::post('/course/import/', [App\Http\Controllers\CourseController::class, 'import'])->name('course.import');
 
-Route::get('/course/full', [App\Http\Controllers\CourseController::class, 'full'])->name('course.full');
+Route::get('/course', [App\Http\Controllers\CourseController::class, 'index'])->name('course.index');
 
 Route::post('/course/{course}/enroll', [App\Http\Controllers\CourseController::class, 'enroll'])->name('course.enroll');
 
@@ -71,15 +75,19 @@ Route::get('/course/{course}', [App\Http\Controllers\CourseController::class, 's
 |--------------------------------------------------------------------------
 */
 
-Route::get('/course/{course}/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index');
+Route::get('/course/{course}/exam/export/', [App\Http\Controllers\ExamController::class, 'export'])->name('exam.export');
 
-Route::get('/course/{course}/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show');
+Route::post('/course/{course}/exam/import/', [App\Http\Controllers\ExamController::class, 'import'])->name('exam.import');
 
-Route::get('/course/{course}/exam/{exam}/resume', [App\Http\Controllers\ExamController::class, 'resume'])->name('exam.resume');
+Route::get('/course/{course}/exam', [App\Http\Controllers\ExamController::class, 'index'])->name('exam.index')->middleware('enroll');
 
-Route::post('/course/{course}/exam/{exam}/doing/{doing}/submit', [App\Http\Controllers\ExamController::class, 'submit'])->name('exam.submit');
+Route::get('/course/{course}/exam/{exam}', [App\Http\Controllers\ExamController::class, 'show'])->name('exam.show')->middleware('enroll');
 
-Route::get('/course/{course}/exam/{exam}/doing/{doing}/result', [App\Http\Controllers\ExamController::class, 'result'])->name('exam.result');
+Route::get('/course/{course}/exam/{exam}/resume', [App\Http\Controllers\ExamController::class, 'resume'])->name('exam.resume')->middleware('enroll');
+
+Route::post('/course/{course}/exam/{exam}/doing/{doing}/submit', [App\Http\Controllers\ExamController::class, 'submit'])->name('exam.submit')->middleware('enroll');
+
+Route::get('/course/{course}/exam/{exam}/doing/{doing}/result', [App\Http\Controllers\ExamController::class, 'result'])->name('exam.result')->middleware('enroll');
 
 
 
@@ -90,6 +98,8 @@ Route::get('/course/{course}/exam/{exam}/doing/{doing}/result', [App\Http\Contro
 */
 
 Route::get('/news', [App\Http\Controllers\NewsController::class, 'index'])->name('news.index');
+
+Route::post('/news', [App\Http\Controllers\NewsController::class, 'store'])->name('news.store');
 
 Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])->name('news.show');
 
@@ -103,13 +113,6 @@ Route::get('/news/{news}', [App\Http\Controllers\NewsController::class, 'show'])
 
 Route::get('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'show'])->name('profile.show');
 
-
-
-
-
-Route::get('/examList', function(){
-    return view('examlist');
-}) ;
 Route::put('/profile/{profile}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
 
 
@@ -124,6 +127,20 @@ Route::get('student/export/', [App\Http\Controllers\StudentController::class, 'e
 
 Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'import'])->name('student.import');
 
+Route::get('/student', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('student');
+
+Route::get('/student/dashboard', [App\Http\Controllers\StudentController::class, 'dashboard'])->name('student.dashboard');
+
+Route::get('/student/course', [App\Http\Controllers\StudentController::class, 'courses'])->name('student.course');
+
+Route::get('/student/course/{course}', [App\Http\Controllers\StudentController::class, 'exams'])->name('student.course.exam');
+
+Route::get('/student/result/', [App\Http\Controllers\StudentController::class, 'result'])->name('student.result');
+
+Route::get('/student/course/{course}/exam/{exam}', [App\Http\Controllers\StudentController::class, 'preview'])->name('student.course.exam.preview');
+
+Route::post('/student/request', [App\Http\Controllers\StudentController::class, 'request'])->name('student.request');
+
 
 
 /*
@@ -132,9 +149,9 @@ Route::get('student/import/', [App\Http\Controllers\StudentController::class, 'i
 |--------------------------------------------------------------------------
 */
 
-Route::get('lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
+Route::get('/lecturer/export/', [App\Http\Controllers\LecturerController::class, 'export'])->name('lecturer.export');
 
-Route::get('lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
+Route::get('/lecturer/import/', [App\Http\Controllers\LecturerController::class, 'import'])->name('lecturer.import');
 
 Route::get('/lecturer', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer');
 
@@ -142,9 +159,15 @@ Route::get('/lecturer/course', [App\Http\Controllers\LecturerController::class, 
 
 Route::get('/lecturer/course/{course}', [App\Http\Controllers\LecturerController::class, 'exams'])->name('lecturer.course.exam');
 
+Route::post('/lecturer/course/{course}', [App\Http\Controllers\LecturerController::class, 'storeExam'])->name('lecturer.exam.store');
+
 Route::get('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\LecturerController::class, 'questions'])->name('lecturer.course.exam.question');
 
+Route::post('/lecturer/course/{course}/exam/{exam}', [App\Http\Controllers\LecturerController::class, 'storeQuestion'])->name('lecturer.course.exam.question.store');
+
 Route::get('/lecturer/dashboard', [App\Http\Controllers\LecturerController::class, 'dashboard'])->name('lecturer.dashboard');
+
+Route::post('/lecturer/request', [App\Http\Controllers\LecturerController::class, 'request'])->name('lecturer.request');
 
 
 
@@ -169,3 +192,9 @@ Route::get('/admin/course', [App\Http\Controllers\AdminController::class, 'cours
 Route::get('/admin/course/{course}', [App\Http\Controllers\AdminController::class, 'exams'])->name('admin.course.exam');
 
 Route::get('/admin/course/{course}/exam/{exam}', [App\Http\Controllers\AdminController::class, 'questions'])->name('admin.course.exam.question');
+
+Route::get('/admin/request', [App\Http\Controllers\AdminController::class, 'allRequests'])->name('admin.request.index');
+
+Route::put('/admin/request/{userRequest}/verify', [App\Http\Controllers\AdminController::class, 'verify'])->name('admin.request.verify');
+
+Route::put('/admin/request/{userRequest}/deny', [App\Http\Controllers\AdminController::class, 'deny'])->name('admin.request.deny');

@@ -1,16 +1,36 @@
 @extends('layouts.appNoNavNoFoot')
 
 @section('styles')
+
+    <script src="https://cdn.tiny.cloud/1/rmdclr9q9pr72tgrpg0w7x3r0kqnglgojdaxfqsij86e4bp0/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
     <style>
         .float-panel{
             position: fixed;
-            width: 20%;
+            width: 350px;
             top: 2vh;
-            left: 5%;
+            left: 2%;
+            z-index:1000;
+            transition: all 1s ease-out;
         }
 
         .border-red{
             border: 3px solid red!important;
+        }
+
+        .float-btn{
+            position: fixed;
+            left:2%;
+            border-radius:50%;
+            width: 50px;
+            height: 50px;
+            top:45%;
+            background-color: black;
+            z-index:1010;
+            transition: all 1s ease-out;
+        }
+
+        .left{
+            left: -100%!important;
         }
     </style>
 @endsection
@@ -20,9 +40,15 @@
 
     <div class="container-fluid" style='margin-top:2vh; margin-bottom:5vh'>
         <div class="row">
-            <div class="col-lg-3">
-                <div class='float-panel'>
+
+            <div class="col-lg-3" id='left-col'>
+
+                <a class='float-btn left' id='float-btn' onClick="Minimize()"></a>
+
+                <div class='float-panel' id='float-panel'>
+
                     <div class="row">
+
                         <div class='col-lg-12'>
                             <div class="card mb-2">
                                 <div class="card-body">
@@ -32,9 +58,13 @@
                                     <h2 id="demo" class='text-center'></h2>
 
                                     <script>
+                                        if(!localStorage.getItem('countDownValue'))
+                                            localStorage.setItem('countDownValue', {{$doing->remain_time}});
+                                        else
+                                            localStorage.setItem('countDownValue', localStorage.getItem('countDownValue') - 1);
 
                                         // Set the date we're counting down to
-                                        var countDownDate = new Date(new Date().getTime() + {{$doing->remain_time}} * 1000).getTime();
+                                        var countDownDate = new Date(new Date().getTime() + localStorage.getItem('countDownValue') * 1000).getTime();
 
                                         // Update the count down every 1 second
                                         var x = setInterval(function() {
@@ -70,7 +100,6 @@
                             </div>
                         </div>
 
-
                         <div class="col-lg-12">
                             <div class="card">
                                 <div class="card-body">
@@ -80,20 +109,23 @@
                                     @for($j = 0 ; $j < $questions->count() / 5 ; $j++)
                                     <div class='mt-2' style='display:flex; justify-content: space-evenly;'>
                                         @for($k = 0; $k < 5; $k++)
-                                            <a name="" id="btn{{$j * 5 + $k + 1}}" class="btn
+                                            @if($j * 5 + $k + 1 <= count($questions))
+                                                <a name="" id="btn{{$j * 5 + $k + 1}}" class="btn
 
-                                            @if(isset($answer['choice' . ($j * 5 + $k + 1)]))
-                                                btn-success
-                                            @else
-                                                btn-outline-dark
-                                            @endif
+                                                @if(isset($answer['check' . ($j * 5 + $k + 1)]))
+                                                    border-red
+                                                @endif
 
-                                            @if(isset($answer['check' . ($j * 5 + $k + 1)]))
-                                                border-red
+                                                @if(isset($answer['choice' . ($j * 5 + $k + 1)]))
+                                                    btn-success
+                                                @else
+                                                    btn-outline-dark
+                                                @endif
+
+                                                " style='width: 48px' href="#{{$j * 5 + $k + 1}}" role="button">
+                                                    {{$j * 5 + $k + 1}}
+                                                </a>
                                             @endif
-                                            " style='width: 48px' href="#{{$j * 5 + $k + 1}}" role="button">
-                                                {{$j * 5 + $k + 1}}
-                                            </a>
                                         @endfor
                                     </div>
                                     @endfor
@@ -109,19 +141,53 @@
                                     document.getElementById('isPause').value = 'true';
                                     document.getElementById('question-form').submit();" href='#'>Tạm ngưng</a>
 
+                                    <a class="btn btn-outline-dark btn-block" href="#" onClick='Minimize()' role="button">Thu gon</a>
+
+                                    <script>
+                                        function Minimize(){
+
+                                            var float_panel = document.getElementById('float-panel');
+
+                                            var float_btn = document.getElementById('float-btn');
+
+                                            var left_col = document.getElementById('left-col');
+
+                                            var right_col = document.getElementById('right-col');
+
+                                            if(float_panel.classList.contains('left')){
+                                                left_col.classList.remove('col-1');
+                                                left_col.classList.add('col-lg-3');
+                                                right_col.classList.remove('col-11');
+                                                right_col.classList.add('col-lg-9');
+                                                float_btn.classList.add('left');
+                                                float_panel.classList.remove('left');
+                                            }else{
+                                                left_col.classList.add('col-1');
+                                                left_col.classList.remove('col-lg-3');
+                                                right_col.classList.add('col-11');
+                                                right_col.classList.remove('col-lg-9');
+                                                float_panel.classList.add('left');
+                                                float_btn.classList.remove('left');
+                                            }
+
+                                        }
+                                    </script>
+
                                 </div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
 
-            <div class="col-lg-9">
+            <div class="col-lg-9" id='right-col'>
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="card text-center" >
                             <div class="card-body">
-                                <h1 class="card-title">Đề thi : {{$course->name}}</h1>
+                                <h1 class="card-title">Đề thi : {{$course->name}} - {{$exam->title}}</h1>
                                 <h5 class="card-text">Tên thí sinh: {{Auth::user()->name}}</h5>
                             </div>
                         </div>
@@ -137,77 +203,146 @@
                 @csrf
                     <input type='hidden' name='isPause' id='isPause' value='false'>
                     <input type='hidden' name='time_remain' id='time_remain'>
-                @foreach($questions as $question)
-                <div class="row mt-2"> <!-- Cau hoi -->
-                    <div class="col-lg-12">
-                        <div class="card" >
-                            <div class="card-body" id='{{$cau}}'>
-                                <div style='display:flex; justify-content: space-between;'>
-                                    <h4 class="card-title">Câu hỏi {{$cau}}</h4>
-                                    <div class="form-check">
-                                        <label class="form-check-label">
-                                        <script>
-                                            function onCheck(id)
-                                            {
-                                                document.getElementById(id).classList.add('border-red');
-                                            }
+                    <input type='hidden' name='exam_type_id' value='{{$exam->exam_type_id}}'>
 
-                                            function onUnCheck(id)
-                                            {
-                                                document.getElementById(id).classList.remove('border-red');
-                                            }
-                                        </script>
-                                        <input type="checkbox" class="form-check-input" name="check{{$cau}}" id="check{{$cau}}" value="true"
-                                        onclick="if (this.checked) { onCheck('btn{{$cau}}') } else { onUnCheck('btn{{$cau}}') }"
-                                        @if(isset($answer['check' . $cau]))
-                                            checked
+                    @foreach($questions as $question)
+                        <!-- Cau hoi -->
+                        <div class="row mt-2">
+                            <div class="col-lg-12">
+                                <div class="card" >
+                                    <div class="card-body" id='{{$cau}}'>
+
+                                        <div style='display:flex; justify-content: space-between;'>
+                                            <h4 class="card-title">Câu hỏi {{$cau}}</h4>
+                                            <div class="form-check">
+                                                <label class="form-check-label">
+                                                <script>
+                                                    function onCheck(id)
+                                                    {
+                                                        document.getElementById(id).classList.add('border-red');
+                                                    }
+
+                                                    function onUnCheck(id)
+                                                    {
+                                                        document.getElementById(id).classList.remove('border-red');
+                                                    }
+                                                </script>
+                                                <input type="checkbox" class="form-check-input" name="check{{$cau}}" id="check{{$cau}}" value="true"
+                                                onclick="if (this.checked) { onCheck('btn{{$cau}}') } else { onUnCheck('btn{{$cau}}') }"
+                                                @if(isset($answer['check' . $cau]))
+                                                    checked
+                                                @endif
+                                                >
+                                                Đánh dấu
+                                            </label>
+                                            </div>
+                                        </div>
+
+                                        <p class="card-text">{{$question->description}}?</p>
+
+                                        @if($exam->examType->id == '1')
+
+                                            {{-- Multiple-choice Answer --}}
+                                            @php
+                                                $i = 1;
+                                            @endphp
+
+                                            @foreach($question->choices as $choice)
+
+                                                <!-- Group of default radios - option 1 -->
+                                                <div class="custom-control custom-radio">
+                                                    <input value='{{$i}}' type="radio" class="custom-control-input" id="{{$cau}}-choice-{{$i}}" name="choice{{$cau}}"
+                                                    onclick="document.getElementById('btn{{$cau}}').classList.add('btn-success');
+                                                    document.getElementById('btn{{$cau}}').classList.remove('btn-outline-dark')"
+                                                    @if(isset($answer['choice' . $cau]) && $answer['choice' . $cau] == $i)
+                                                        checked
+                                                    @endif>
+
+                                                    <label class="custom-control-label" for="{{$cau}}-choice-{{$i}}">{{$choice->description}}</label>
+                                                </div>
+
+                                                @php
+                                                    $i++;
+                                                @endphp
+
+                                            @endforeach
+                                            {{-- Multiple-choice Answer --}}
+
+                                        @elseif($exam->examType->id == '2')
+
+                                            {{-- Self-commentary --}}
+                                            <hr/>
+                                            <textarea id="{{$cau}}-choice" rows='20' name="choice{{$cau}}">
+                                                @if(isset($answer['choice' . $cau]))
+                                                    {!!$answer['choice' . $cau]!!}
+                                                @endif
+                                            </textarea>
+                                            <script>
+                                                tinymce.init({
+                                                    selector: 'textarea#{{$cau}}-choice',
+                                                    plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+                                                    toolbar_mode: 'floating',
+                                                    init_instance_callback: function(editor) {
+                                                        editor.on('input', function(e) {
+                                                            document.getElementById('btn{{$cau}}').classList.add('btn-success');
+                                                            document.getElementById('btn{{$cau}}').classList.remove('btn-outline-dark')
+                                                        });
+                                                    }
+                                                });
+                                            </script>
+                                            {{-- Self-commentary --}}
+
                                         @endif
-                                        >
-                                        Đánh dấu
-                                    </label>
+
+                                        @php
+                                            $cau++;
+                                        @endphp
+
+
                                     </div>
                                 </div>
-                                <p class="card-text">{{$question->description}}?</p>
-
-
-                                @php
-                                    $i = 1;
-                                @endphp
-
-                                @foreach($question->choices as $choice)
-
-                                <!-- Group of default radios - option 1 -->
-                                <div class="custom-control custom-radio">
-                                    <input value='{{$i}}' type="radio" class="custom-control-input" id="{{$cau}}-choice-{{$i}}" name="choice{{$cau}}"
-                                    onclick="document.getElementById('btn{{$cau}}').classList.add('btn-success');
-                                    document.getElementById('btn{{$cau}}').classList.remove('btn-outline-dark')"
-                                    @if(isset($answer['choice' . $cau]) && $answer['choice' . $cau] == $i)
-                                        checked
-                                    @endif>
-
-                                    <label class="custom-control-label" for="{{$cau}}-choice-{{$i}}">{{$choice->description}}</label>
-                                </div>
-
-                                @php
-                                    $i++;
-                                @endphp
-
-                                @endforeach
-
-                                @php
-                                    $cau++;
-                                @endphp
-
                             </div>
                         </div>
-                    </div>
-                </div><!-- Cau hoi -->
-                @endforeach
-                </form>
+                        <!-- Cau hoi -->
+                    @endforeach
+
+                    </form>
                 </form>
 
             </div>
         </div>
     </div>
+
+@endsection
+
+@section('scripts')
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links
+  $("a").on('click', function(event) {
+
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 1000, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+});
+</script>
 
 @endsection

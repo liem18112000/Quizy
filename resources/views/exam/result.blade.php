@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                             <div class='card-footer'>
-                                <a name="" id="" class="btn btn-outline-secondary btn-block" href="{{ route('exam.index', $course)}}" role="button">Back</a>
+                                <a name="" id="" class="btn btn-outline-secondary btn-block" href="{{ route('student.result')}}" role="button">Result Board</a>
                             </div>
                         </div>
                     </div>

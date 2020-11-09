@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DoingExam extends Model
 {
-    
+
     public $table = "doing_exams";
     protected $guarded = [];
     use HasFactory;
@@ -19,5 +19,15 @@ class DoingExam extends Model
     public function choices(){
         return $this->hasMany('App\Models\ExamChoiceLog','user_id','user_id');
     }
-    
+
+    public function course()
+    {
+        return $this->belongsTo('App\Models\Course');
+    }
+
+    public function exam()
+    {
+        return $this->belongsTo('App\Models\Exam');
+    }
+
 }

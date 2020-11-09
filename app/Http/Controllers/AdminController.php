@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Course;
+use App\Models\EnrollCourse;
 use App\Models\Role;
 use App\Models\Profile;
 use App\Models\RoleType;
 use App\Models\Exam;
+use App\Models\Teaching;
+use App\Models\UserRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +40,8 @@ class AdminController extends Controller
             'numberOfCourses'       => $numberOfCourses,
             'numberOfAdmins'        => $numberOfAdmins,
             'numberOfLecturers'     => $numberOfLecturers,
-            'numberOfExams'         => $numberOfExams
+            'numberOfExams'         => $numberOfExams,
+            'requests'              => UserRequest::all(),
         ]);
     }
 
@@ -132,5 +136,84 @@ class AdminController extends Controller
             'exam'     => $exam,
             'questions'  => $exam->questions
         ]);
+    }
+
+    public function allRequests()
+    {
+        return view('admin.request.index', [
+            'requests'      => UserRequest::where('status', '1')->get()
+        ]);
+    }
+
+    private function tackleRequest(UserRequest $request)
+    {
+
+        switch($request->request_type_id)
+        {
+            case 1:{
+                Teaching::create([
+                    'course_id' => $request->data,
+                    'user_id'   => $request->user_id,
+                    'role_id'   => Role::where('user_id', $request->user_id)->where('role_type_id', '2')->first()->id,
+                ]);
+                break;
+
+            }
+
+            case 2:{
+
+                $teach = Teaching::where('user_id', $request->user_id)->where('course_id', $request->data)->first();
+
+                $teach->delete();
+
+                break;
+            }
+
+            case 3: {
+                Role::create([
+                    'user_id' => $request->user_id,
+                    'role_type_id'  => $request->data,
+                ]);
+                break;
+            }
+
+            default: {
+
+                break;
+            }
+        }
+
+        return true;
+    }
+
+    public function verify(UserRequest $userRequest)
+    {
+        $userRequest->update([
+            'request_status'        => 'success',
+            'admin_id'              => Auth::user()->id,
+        ]);
+
+        alert()->success('Done', 'User request verified successfully');
+
+        if($this->tackleRequest($userRequest))
+        {
+            alert()->success('Done', 'User request exec done');
+        }else{
+            alert()->error('Opps', 'User request exec failed');
+        }
+
+        return redirect()->back();
+    }
+
+    public function deny(UserRequest $userRequest)
+    {
+        $userRequest->update([
+            'request_status'        => 'failed',
+            'admin_id'              => Auth::user()->id,
+        ]);
+
+        alert()->success('Done', 'User request reject successfully');
+
+        return redirect()->back();
     }
 }

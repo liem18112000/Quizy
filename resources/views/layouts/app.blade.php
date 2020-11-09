@@ -108,19 +108,15 @@
 
 
                                     <a class="nav-link dropdown-toggle btn_2" href="#" style='padding: 10px 30px;' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <strong>{{Auth::user()->roles->sortBy('role_type_id')->last()->roleType->name}}</strong> {{Auth::user()->name}}
+                                        <strong>{{Auth::user()->name}}
                                     </a>
 
 
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        @if(Auth::user()->roles->where('role_type_id', '3')->first())
-                                            <a class="dropdown-item" href="{{ route('admin.dashboard')}}">Admin Dashboard</a>
-                                            <div class='dropdown-divider'></div>
-                                        @endif
-                                        @if(Auth::user()->roles->where('role_type_id', '2')->first())
-                                            <a class="dropdown-item" href="{{ route('lecturer.dashboard')}}">Lecturer Dashboard</a>
-                                            <div class='dropdown-divider'></div>
-                                        @endif
+
+                                        <a class="dropdown-item" href="{{ route('main-dashboard')}}">Dashboard</a>
+                                        <div class='dropdown-divider'></div>
+
                                         <a class="dropdown-item" href="{{ route('profile.show', Auth::user()->profile)}}">Profile</a>
                                         <div class='dropdown-divider'></div>
 

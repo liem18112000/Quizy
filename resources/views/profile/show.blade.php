@@ -65,19 +65,33 @@
         <div class="col-sm-9">
             <ul class="nav nav-tabs">
                 <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
-                <li><a data-toggle="tab" href="#messages">Menu 1</a></li>
-                <li><a data-toggle="tab" href="#settings">Menu 2</a></li>
+                <li><a data-toggle="tab" href="#edit">Edit</a></li>
+                <li><a data-toggle="tab" href="#settings">Advance</a></li>
             </ul>
 
 
             <div class="tab-content">
                 <div class="tab-pane active" id="home">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h1>{{Auth::user()->name}}</h1>
+                        </div>
+                        <div class="card-body" style=''>
+                            {!!$profile->bio!!}
+                        </div>
+                    </div>
+
+                </div>
+                <!--/tab-pane-->
+                <div class="tab-pane" id="edit">
+
                     <div class="card">
                         <div class="card-body">
                             <form class="form" action="{{ route('profile.update', $profile)}}" method='POST' id="registrationForm">
                                 @csrf
                                 @method('PUT')
-                                <div class="form-group">
+                                <div class="form-group mt-4">
 
                                     <div class="col-xs-6">
                                         <label for="name">
@@ -88,18 +102,22 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mt-4">
 
                                     <div class="col-xs-6">
                                         <label for="email">
                                             <h4>Email</h4>
                                         </label>
                                         <input type="text" class="form-control" name="email" id="email"
-                                            placeholder="Email" disabled='disabled' value='{{$profile->user->email}}'>
+                                            placeholder="Email"
+                                            @if(Auth::user()->profile->email)
+                                                disabled='disabled'
+                                            @endif
+                                            value='{{$profile->user->email}}'>
                                     </div>
                                 </div>
 
-                                 <div class="form-group">
+                                 <div class="form-group mt-4">
 
                                     <div class="col-xs-6">
                                         <label for="name">
@@ -110,7 +128,7 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mt-4">
 
                                     <div class="col-xs-6">
                                         <label for="email">
@@ -121,13 +139,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group mt-4">
 
                                     <div class="col-xs-12">
                                         <label for="bio">
                                             <h4>Short story about yourself</h4>
                                         </label>
-                                        <textarea id='bio' rows='16' name='bio'>
+                                        <textarea id='bio' rows='32' name='bio' style='height:100%'>
                                             {!! $profile->bio !!}
                                         </textarea>
                                         <script>
@@ -158,14 +176,16 @@
                             </form>
                         </div>
                     </div>
-                </div>
-                <!--/tab-pane-->
-                <div class="tab-pane" id="messages">
 
                 </div>
                 <!--/tab-pane-->
                 <div class="tab-pane" id="settings">
+                    <div class="card text-left">
+                        <div class="card-body">
 
+
+                        </div>
+                    </div>
                 </div>
 
             </div>

@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User as Student;
+use App\Models\Course;
+use App\Models\UserRequest;
+use App\Models\Exam;
+use App\Models\DoingExam;
+use Illuminate\Support\Facades\Auth;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -27,79 +32,77 @@ class StudentController extends Controller
         return redirect('/')->with('success', 'All good!');
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function courses()
     {
-        //
+        $enrolls = Auth::user()->roles->where('role_type_id', '1')->first()->enrollCourse;
+
+        $courses = null;
+
+        foreach ($enrolls as $enroll) {
+            $courses[] = $enroll->forCourse;
+        }
+
+        return view('student.course', [
+            'courses'    => $courses
+        ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function exams(Course $course)
     {
-        //
+        return view('student.exam', [
+            'course'    => $course,
+            'exams'     => $course->exams,
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function result()
     {
-        //
+        return view('student.result', [
+            'results' => DoingExam::where('user_id', Auth::user()->id)->get()
+        ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Student $student)
+    public function dashboard()
     {
-        //
+
+        $grades[] = DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->where('grade', '<=', 10)->count();
+        $grades[] = DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->where('grade', '>', 10)->where('grade', '<=', 20)->count();
+        $grades[] = DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->where('grade', '>', 20)->where('grade', '<=', 30)->count();
+        $grades[] = DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->where('grade', '>', 30)->count();
+
+        return view('student.dashboard',[
+            'courses'       => Course::all(),
+            'enrollCourses' => Auth::user()->roles->where('role_type_id', '1')->first()->enrollCourse,
+            'exams'         => DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->get(),
+            'doing_exams'   => DoingExam::where('user_id', Auth::user()->id)->where('status', '0')->orderBy('updated_at', 'DESC')->limit(5)->get(),
+            'grades'        => $grades
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Student $student)
+    public function preview(Course $course, Exam $exam)
     {
-        //
+        $doing = DoingExam::where('status', '0')->where('course_id', $course->id)->where('exam_id', $exam->id)->where('user_id', Auth::user()->id)->first();
+
+        return view('student.preview', [
+            'course'    => $course,
+            'exam'      => $exam,
+            'questions' => $exam->questions,
+            'doing'     => $doing,
+            'answer'    => json_decode($doing->answer, true),
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Student $student)
+    public function request(Request $request)
     {
-        //
-    }
+        $UserRequest = UserRequest::create([
+            'user_id'           => Auth::user()->id,
+            'description'       => $request->description,
+            'request_type_id'   => $request->request_type_id,
+            'data'              => $request->data ? $request->data : null,
+        ]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Student $student)
-    {
-        //
+        alert()->success('Done', 'UserRequest has been saved successfully');
+
+        return redirect()->back();
     }
 }

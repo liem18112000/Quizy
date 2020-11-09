@@ -15,10 +15,11 @@
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
+    @yield('styles')
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('img/kccfaviconcircle.png') }}">
 
     {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -101,11 +102,34 @@
                         </li>
 
                         <li class="sidebar-dropdown">
-                            <a href="{{route('lecturer.dashboard')}}">
+                            <a href="#">
                                 <i class="fa fa-desktop"></i>
-                                <span>Dashboard</span>
+                                <span>Dashboards</span>
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('student.dashboard')}}">
+                                            Student Dashboard
+                                        </a>
+                                    </li>
+                                    @if(Auth::user()->roles->where('role_type_id', '2')->first())
+                                    <li>
+                                        <a href="{{route('lecturer.dashboard')}}">
+                                            Lecturer Dashboard
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @if(Auth::user()->roles->where('role_type_id', '3')->first())
+                                    <li>
+                                        <a href="{{route('admin.dashboard')}}">
+                                            Admin Dashboard
+                                        </a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
@@ -123,6 +147,23 @@
 
                                     <li>
                                         <a href="#">Summary Charts</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="sidebar-dropdown">
+                            <a href="#">
+                                <i class="fa fa-reply" aria-hidden="true"></i>
+                                <span>Request</span>
+                                {{-- <span class="badge badge-pill badge-danger">3</span> --}}
+                            </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="#">Request Management</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Verified</a>
                                     </li>
                                 </ul>
                             </div>

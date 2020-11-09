@@ -15,6 +15,8 @@
     <!-- Scripts -->
     {{-- <script src="{{ asset('js/app.js') }}" defer></script> --}}
 
+    @yield('styles')
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -98,11 +100,34 @@
                             <span>General</span>
                         </li>
                         <li class="sidebar-dropdown">
-                            <a href="{{route('admin.dashboard')}}">
+                            <a href="#">
                                 <i class="fa fa-desktop"></i>
-                                <span>Dashboard</span>
+                                <span>Dashboards</span>
                                 {{-- <span class="badge badge-pill badge-warning">New</span> --}}
                             </a>
+                            <div class="sidebar-submenu">
+                                <ul>
+                                    <li>
+                                        <a href="{{route('student.dashboard')}}">
+                                            Student Dashboard
+                                        </a>
+                                    </li>
+                                    @if(Auth::user()->roles->where('role_type_id', '2')->first())
+                                    <li>
+                                        <a href="{{route('lecturer.dashboard')}}">
+                                            Lecturer Dashboard
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @if(Auth::user()->roles->where('role_type_id', '3')->first())
+                                    <li>
+                                        <a href="{{route('admin.dashboard')}}">
+                                            Admin Dashboard
+                                        </a>
+                                    </li>
+                                    @endif
+                                </ul>
+                            </div>
                         </li>
                         <li class="sidebar-dropdown">
                             <a href="#">
@@ -169,7 +194,7 @@
                             <div class="sidebar-submenu">
                                 <ul>
                                     <li>
-                                        <a href="#">Pending</a>
+                                        <a href="{{route('admin.request.index')}}">Request Management</a>
                                     </li>
                                     <li>
                                         <a href="#">Verified</a>

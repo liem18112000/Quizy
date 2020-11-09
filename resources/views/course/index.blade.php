@@ -32,9 +32,9 @@
             </div>
             <div class="row">
             @foreach($courses as $course)
-                <div class="col-sm-6 col-lg-4">
+                <div class="col-sm-6 col-lg-4 mb-4">
                     <div class="single_special_cource">
-                        <img src="img/special_cource_1.png" class="special_img" alt="">
+                        <img src="{{$course->image}}" class="special_img" style='object-fit:cover' alt="">
                         <div class="special_cource_text">
                             <a href=""><h3>{{$course->name}}</h3></a>
                             <hr/>

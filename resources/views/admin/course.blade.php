@@ -5,10 +5,17 @@
 
     <hr/>
     <!-- Button trigger modal -->
+
     <div style='padding-left: 40px;'>
-        <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modelId">
-            Add course
-        </button>
+        <form action="{{ route('course.import') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <input type="file" name="file" id="file">
+            <button class='btn btn-info' type="submit">Course import</button>
+            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#modelId">
+                Add course
+            </button>
+        </form>
+
     </div>
 
     <!-- Modal -->

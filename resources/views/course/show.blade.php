@@ -10,7 +10,7 @@
                     <div class="breadcrumb_iner text-center">
                         <div class="breadcrumb_iner_item">
                             <h2>Course Details</h2>
-                            <p>Home<span>/</span>Course Details</p>
+                            <p>Home<span>/</span>All Courses<span>/</span>Course Details</p>
                         </div>
                     </div>
                 </div>
@@ -25,19 +25,11 @@
             <div class="row">
                 <div class="col-lg-8 course_details_left">
                     <div class="main_image">
-                        <img class="img-fluid" src="{{ asset('img/single_cource.png')}}" alt="">
+                        <img class="img-fluid" src="{{$course->image}}" style='width:100%; object-fit:cover' alt="">
                     </div>
                     <div class="content_wrapper">
 
-                        <h4 class="title">Course Outline</h4>
-                        <div class="content">
-                            <ul class="course_list">
-                                <li class="justify-content-between align-items-center d-flex">
-                                    <h5>Exam list</h5>
-                                    <a class="btn_2 text-uppercase" href="{{route('exam.index', $course)}}">View Details</a>
-                                </li>
-                            </ul>
-                        </div>
+
                     </div>
                 </div>
 
@@ -45,16 +37,19 @@
                 <div class="col-lg-4 right-contents">
                     <div class="sidebar_top">
                         <ul>
+
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Trainer’s Name</p>
-                                    <span class="color">George Mathews</span>
+                                    <p>Course</p>
+                                    <span>{{$course->name}}</span>
                                 </a>
                             </li>
                             <li>
                                 <a class="justify-content-between d-flex" href="#">
-                                    <p>Course Fee </p>
-                                    <span>$230</span>
+                                    <p>Lecturer</p>
+                                    <span class="color">
+                                        {{$course->teachBy->first() ? $course->teachBy->first()->teachBy->user->name : 'Not Available'}}
+                                    </span>
                                 </a>
                             </li>
                             <li>
@@ -71,13 +66,25 @@
                             </li>
 
                         </ul>
-                        @if(!Auth::user()->roles->where('role_type_id', '1')->first()->enrollCourse->first())
-                        <form action='{{ route('course.enroll', $course)}}' method='POST'>
-                            @csrf
-                            <button type="submit" class="btn_1 btn-block">Enroll Course</button>
-                        </form>
+
+                        <h4 class="title">Course Outline</h4>
+                        <div class="content">
+                            <ul class="course_list">
+                                <li class="justify-content-between align-items-center d-flex">
+                                    <p>Exam list</p>
+                                    <a class="btn_2 text-uppercase" href="{{route('exam.index', $course)}}">View Details</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <hr/>
+                        @if($course->hasStudent->first() && $course->hasStudent->where('user_id', Auth::user()->id)->first())
+                            <a class="btn_1 btn-block" href="{{route('student.course.exam', $course)}}" role="button"> View Exams</a>
                         @else
-                            <a href="javascript:void(0)" class="btn_1 btn-block" href="#" role="button"> Already Enrolled</a>
+                            <form action='{{ route('course.enroll', $course)}}' method='POST'>
+                                @csrf
+                                <button type="submit" class="btn_1 btn-block">Enroll Course</button>
+                            </form>
                         @endif
                     </div>
                 </div>

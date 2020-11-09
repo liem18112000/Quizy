@@ -19,52 +19,45 @@
     </section>
     <!-- breadcrumb start-->
 
-    <!-- feature_part start-->
-    <section class="feature_part single_feature_padding">
+    <!-- learning part start-->
+    <section class="advance_feature learning_part">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-6 col-xl-3 align-self-center">
-                    <div class="single_feature_text ">
-                        <h2>Awesome <br> Feature</h2>
-                        <p>Set have great you male grass yielding an yielding first their you're
-                            have called the abundantly fruit were man </p>
-                        <a href="#" class="btn_1">Read More</a>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><i class="ti-layers"></i></span>
-                            <h4>Better Future</h4>
-                            <p>Set have great you male grasses yielding yielding first their to
-                                called deep abundantly Set have great you male</p>
+            <div class="row align-items-sm-center align-items-xl-stretch">
+                <div class="col-md-6 col-lg-6">
+                    <div class="learning_member_text">
+                        <h5>Advance feature</h5>
+                        <h2>Our Advance Educator
+                            Learning System</h2>
+                        <p>Fifth saying upon divide divide rule for deep their female all hath brind mid Days
+                            and beast greater grass signs abundantly have greater also use over face earth
+                            days years under brought moveth she star</p>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-12 col-lg-6">
+                                <div class="learning_member_text_iner">
+                                    <span class="ti-pencil-alt"></span>
+                                    <h4>Learn Anywhere</h4>
+                                    <p>There earth face earth behold she star so made void two given and also our</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-md-12 col-lg-6">
+                                <div class="learning_member_text_iner">
+                                    <span class="ti-stamp"></span>
+                                    <h4>Expert Teacher</h4>
+                                    <p>There earth face earth behold she star so made void two given and also our</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="single_feature">
-                        <div class="single_feature_part">
-                            <span class="single_feature_icon"><i class="ti-new-window"></i></span>
-                            <h4>Qualified Trainers</h4>
-                            <p>Set have great you male grasses yielding yielding first their to called
-                                deep abundantly Set have great you male</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-6 col-xl-3">
-                    <div class="single_feature">
-                        <div class="single_feature_part single_feature_part_2">
-                            <span class="single_service_icon style_icon"><i class="ti-light-bulb"></i></span>
-                            <h4>Job Oppurtunity</h4>
-                            <p>Set have great you male grasses yielding yielding first their to called deep
-                                abundantly Set have great you male</p>
-                        </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="learning_img">
+                        <img src="img/advance_feature_img.png" alt="">
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- upcoming_event part start-->
+    <!-- learning part end-->
 
     <!-- learning part start-->
     <section class="learning_part">
@@ -103,26 +96,26 @@
             <div class="row">
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_member_counter">
-                        <span class="counter">1024</span>
+                        <span class="counter">{{$teachers}}</span>
                         <h4>All Teachers</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_member_counter">
-                        <span class="counter">960</span>
+                        <span class="counter">{{$users - $teachers}}</span>
                         <h4> All Students</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_member_counter">
-                        <span class="counter">1020</span>
-                        <h4>Online Students</h4>
+                        <span class="counter">{{$courses}}</span>
+                        <h4>All Courses</h4>
                     </div>
                 </div>
                 <div class="col-lg-3 col-sm-6">
                     <div class="single_member_counter">
-                        <span class="counter">820</span>
-                        <h4>Ofline Students</h4>
+                        <span class="counter">{{$exams}}</span>
+                        <h4>All Exams</h4>
                     </div>
                 </div>
             </div>
@@ -136,8 +129,8 @@
             <div class="row justify-content-center">
                 <div class="col-xl-5">
                     <div class="section_tittle text-center">
-                        <p>tesimonials</p>
-                        <h2>Happy Students</h2>
+                        <p>Our team</p>
+                        <h2>Happy Founders</h2>
                     </div>
                 </div>
             </div>
@@ -151,13 +144,13 @@
                                         <p>Behold place was a multiply creeping creature his domin to thiren open void
                                             hath herb divided divide creepeth living shall i call beginning
                                             third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        <h4>Đoàn Văn Thanh Liêm</h4>
+                                        <h5> Full-stack Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
                                     <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
+                                        <img src="{{asset('img/liem.jpg')}}" style='object-fit:cover; height:100%;' alt="#">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 d-none d-xl-block">
@@ -165,13 +158,13 @@
                                         <p>Behold place was a multiply creeping creature his domin to thiren open void
                                             hath herb divided divide creepeth living shall i call beginning
                                             third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        <h4>Đoàn Minh Tuấn</h4>
+                                        <h5> Security Advisor</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 d-none d-xl-block">
                                     <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
+                                        <img src="{{ asset('img/tuấn.jpg')}}" style='object-fit:cover; height:100%;' alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -183,13 +176,13 @@
                                         <p>Behold place was a multiply creeping creature his domin to thiren open void
                                             hath herb divided divide creepeth living shall i call beginning
                                             third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        <h4>Trần Gia Hòa</h4>
+                                        <h5> Database Administrator</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
                                     <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
+                                        <img src="{{ asset('img/hòa.jpg')}}" style='object-fit:cover; height:100%;' alt="#">
                                     </div>
                                 </div>
                                 <div class="col-xl-4 d-none d-xl-block">
@@ -197,13 +190,13 @@
                                         <p>Behold place was a multiply creeping creature his domin to thiren open void
                                             hath herb divided divide creepeth living shall i call beginning
                                             third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        <h4>Đỗ Phương Nhật Minh</h4>
+                                        <h5> Project Manager</h5>
                                     </div>
                                 </div>
                                 <div class="col-xl-2 d-none d-xl-block">
                                     <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
+                                        <img src="{{ asset('img/minh.jpg')}}" style='object-fit:cover; height:100%;' alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -215,27 +208,13 @@
                                         <p>Behold place was a multiply creeping creature his domin to thiren open void
                                             hath herb divided divide creepeth living shall i call beginning
                                             third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
+                                        <h4>Nguyễn Vũ Anh Thư</h4>
+                                        <h5> Front-end Developer</h5>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-xl-2 col-sm-4">
                                     <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
-                                    </div>
-                                </div>
-                                <div class="col-xl-4 d-none d-xl-block">
-                                    <div class="testimonial_slider_text">
-                                        <p>Behold place was a multiply creeping creature his domin to thiren open void
-                                            hath herb divided divide creepeth living shall i call beginning
-                                            third sea itself set</p>
-                                        <h4>Michel Hashale</h4>
-                                        <h5> Sr. Web designer</h5>
-                                    </div>
-                                </div>
-                                <div class="col-xl-2 d-none d-xl-block">
-                                    <div class="testimonial_slider_img">
-                                        <img src="img/testimonial_img_1.png" alt="#">
+                                        <img src="{{ asset('img/thư.jpg')}}" style='object-fit:cover; height:100%;' alt="#">
                                     </div>
                                 </div>
                             </div>
@@ -246,6 +225,5 @@
             </div>
         </div>
     </section>
-    <!--::blog_part end::-->
 
 @endsection

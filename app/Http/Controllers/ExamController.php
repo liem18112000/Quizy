@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Exam;
 use App\Models\Course;
 use App\Models\DoingExam;
+use App\Exports\ExamsExport;
+use App\Imports\ExamsImport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,7 +17,30 @@ class ExamController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('enroll');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ExamsExport, 'exams.xlsx');
+    }
+
+    public function import(Request $request, Course $course)
+    {
+        $dataTime = date('Ymd_His');
+
+        $file = $request->file('file');
+
+        $fileName = $dataTime . '-' . $file->getClientOriginalName();
+
+        $savePath = public_path('/import/');
+
+        $file->move($savePath, $fileName);
+
+        Excel::import(new ExamsImport($course), $savePath . $fileName);
+
+        alert()->success('Done', 'Exams import successfully');
+
+        return redirect()->back();
     }
 
     /**
@@ -25,8 +51,8 @@ class ExamController extends Controller
     public function index(Course $course)
     {
         return view('exam.index', [
-            'exams' => Exam::all(),
-            'course' => $course
+            'exams'     => $course->exams,
+            'course'    => $course
         ]);
     }
 
@@ -89,20 +115,20 @@ class ExamController extends Controller
 
         $score = 0;
 
-        foreach($exam->questions as $question)
-        {
-            $answer[] = $question->answer_choice_id;
-        }
+        if($exam->examType->id != '2'){
+            
+            foreach ($exam->questions as $question) {
+                $answer[] = $question->answer_choice_id;
+            }
 
-        for($i = 0; $i < count($answer); $i++)
-        {
-            $value1 = strval($request->input('choice' . strval($i + 1)));
+            for ($i = 0; $i < count($answer); $i++) {
+                $value1 = strval($request->input('choice' . strval($i + 1)));
 
-            $value2 = strval(($answer[$i] - 1) % 4 + 1);
+                $value2 = strval(($answer[$i] - 1) % 4 + 1);
 
-            if($value1 == $value2)
-            {
-                $score += 1.0;
+                if ($value1 == $value2) {
+                    $score += 1.0;
+                }
             }
         }
 
@@ -142,7 +168,7 @@ class ExamController extends Controller
 
         alert()->success('Exam paused', 'You can continue anytime!');
 
-        return redirect()->route('exam.index', $course);
+        return redirect()->route('student.course.exam', $course);
     }
 
     public function resume(Request $request, Course $course, Exam $exam)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class NewsController extends Controller
 {
@@ -14,17 +15,9 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return view('news.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('news.index',[
+            'news' => News::orderBy('updated_at', 'DESC')->paginate(4)
+        ]);
     }
 
     /**
@@ -35,7 +28,21 @@ class NewsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $news = News::create([
+            'title'     => $request->title,
+            'image'     => $this->storeMediaCloudinary($request, 'image'),
+            'content'   => $request->content,
+            'user_id'   => Auth::user()->id,
+        ]);
+
+        activity()
+            ->performedOn($news)
+            ->causedBy(Auth::user())
+            ->log('News created');
+
+        alert()->success('Done', 'News created successfully');
+
+        return redirect()->back();
     }
 
     /**
@@ -47,19 +54,11 @@ class NewsController extends Controller
     public function show(News $news)
     {
         return view('news.show', [
-            'news' => $news
+            'new'           => $news,
+            'nextNew'       => News::where('id', ($news->id) % count(News::all()) + 1 )->first(),
+            'preNew'        => News::where('id', ($news->id - 2) % count(News::all()) + 1)->first(),
+            'news'          => News::orderBy('updated_at', 'DESC')->paginate(4),
         ]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\News  $news
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(News $news)
-    {
-        //
     }
 
     /**
@@ -71,7 +70,20 @@ class NewsController extends Controller
      */
     public function update(Request $request, News $news)
     {
-        //
+        $news->update([
+            'title'     => $request->title,
+            'image'     => $this->storeMediaCloudinary($request, 'image'),
+            'content'   => $request->content
+        ]);
+
+        activity()
+            ->performedOn($news)
+            ->causedBy(Auth::user())
+            ->log('News updated');
+
+        alert()->success('Done', 'News updated successfully');
+
+        return redirect()->back();
     }
 
     /**
