@@ -10,6 +10,8 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use App\Models\Profile;
 use App\Models\Role;
+use App\Notifications\WelcomeNotification;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -113,6 +115,8 @@ class LoginController extends Controller
             ->performedOn($role)
             ->causedBy($user)
             ->log('New role create');
+
+            $user->notify(new WelcomeNotification);
 
         } else {
 
