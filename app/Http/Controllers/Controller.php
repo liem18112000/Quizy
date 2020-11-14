@@ -12,7 +12,12 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function storeMediaCloudinary($request, $field)
+    /**
+     * @param $request
+     * @param $field
+     * @return string
+     */
+    public function storeMediaCloudinary($request, $field): string
     {
         $fileNameToStore = 'untitled';
 
@@ -20,8 +25,6 @@ class Controller extends BaseController
         if ($request->hasFile($field)) {
 
             $media = $request->file($field);
-
-            // dd($media->getMimeType());
 
             $media_type = explode('/', $media->getMimeType())[0];
 

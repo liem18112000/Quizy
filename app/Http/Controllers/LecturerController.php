@@ -11,23 +11,38 @@ use App\Models\Choice;
 use App\Models\UserRequest;
 use App\Exports\UsersExport;
 use App\Imports\UsersImport;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Maatwebsite\Excel\Facades\Excel;;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class LecturerController extends Controller
 {
+    /**
+     * LecturerController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('lecturer');
     }
 
+    /**
+     * @return BinaryFileResponse
+     */
     public function export()
     {
         return Excel::download(new UsersExport, 'lecturers.xlsx');
     }
 
+    /**
+     * @return Application|RedirectResponse|Redirector
+     */
     public function import()
     {
         Excel::import(new UsersImport, 'lecturers.xlsx');
@@ -37,12 +52,17 @@ class LecturerController extends Controller
 
     public function courses()
     {
-        $teachings = Auth::user()->roles->where('role_type_id', '2')->first()->teachCourse;
+        $courses    = null;
+        $teachings  = null;
 
-        $courses = null;
+        if (isset(Auth::user()->roles)) {
+            $teachings = Auth::user()->roles->where('role_type_id', '2')->first()->teachCourse;
+        }
 
-        foreach($teachings as $teaching){
-            $courses[] = $teaching->forCourse;
+        if (isset($teachings)) {
+            foreach($teachings as $teaching){
+                $courses[] = $teaching->forCourse;
+            }
         }
 
         return view('lecturer.course', [
@@ -50,25 +70,48 @@ class LecturerController extends Controller
         ]);
     }
 
+    /**
+     * @param Course $course
+     * @return Application|Factory|View|RedirectResponse
+     */
     public function exams(Course $course)
     {
-        return view('lecturer.exam', [
-            'examTypes' => ExamType::all(),
-            'course'    => $course,
-            'exams'     => $course->exams,
-        ]);
+        if (isset($course->exams)) {
+            return view('lecturer.exam', [
+                'examTypes' => ExamType::all(),
+                'course'    => $course,
+                'exams'     => $course->exams,
+            ]);
+        }
+
+        alert()->warning('Ops', 'Something went wrong?');
+
+        return redirect()->back();
     }
 
     public function storeExam(Request $request, Course $course)
     {
-        $exam = Exam::create([
-            'course_id' => $course->id,
-            'title'     => $request->title,
-            'user_id'   => Auth::user()->id,
-            'aLlow_time' => $request->alow_time,
-            'duration_min' => $request->duration,
-            'exam_type_id'  => $request->exam_type_id,
+        $request->validate([
+            'title'         => 'required|max:255',
+            'aLlow_time'    => 'required',
+            'duration_min'  => 'required',
+            'exam_type_id'  => 'required',
         ]);
+
+        $exam = null;
+
+        if (isset($course->id)) {
+            if (isset(Auth::user()->id)) {
+                $exam = Exam::create([
+                    'course_id'     => $course->id,
+                    'title'         => $request->title,
+                    'user_id'       => Auth::user()->id,
+                    'aLlow_time'    => $request->alow_time,
+                    'duration_min'  => $request->duration,
+                    'exam_type_id'  => $request->exam_type_id,
+                ]);
+            }
+        }
 
         activity()
             ->performedOn($exam)
@@ -80,6 +123,11 @@ class LecturerController extends Controller
         return redirect()->route('lecturer.course.exam', $course);
     }
 
+    /**
+     * @param Course $course
+     * @param Exam $exam
+     * @return Application|Factory|View
+     */
     public function questions(Course $course, Exam $exam)
     {
         return view('lecturer.question', [
@@ -89,32 +137,58 @@ class LecturerController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Course $course
+     * @param Exam $exam
+     * @return RedirectResponse
+     */
     public function storeQuestion(Request $request, Course $course, Exam $exam)
     {
-        $question = Question::create([
-            'description'   => $request->description,
-            'course_id'     => $course->id,
-            'exam_id'       => $exam->id,
-            'answer_choice_id' => $request->mark ? '1' : $request->mark,
+        $request->validate([
+            'description'       => 'required',
+            'answer_choice_id'  => 'required',
+            'answer'            => 'required'
         ]);
+
+        $question = null;
+
+        if (isset($course->id)) {
+            if (isset($exam->id)) {
+                $question = Question::create([
+                    'description'       => $request->description,
+                    'course_id'         => $course->id,
+                    'exam_id'           => $exam->id,
+                    'answer_choice_id'  => $request->mark,
+                ]);
+            }
+        }
 
         $choices = null;
 
-        if($exam->examType->id == '1'){
+        if (isset($exam->examType)) {
+            if($exam->examType->id == '1'){
 
-            for ($i = 0; $i < 4; $i++) {
-                $choices[$i] = Choice::create([
-                    'exam_id'       => $exam->id,
-                    'question_id'   => $question->id,
-                    'description'   => $request->input('choice' . $i),
-                ]);
+                for ($i = 0; $i < 4; $i++) {
+                    if (isset($exam->id)) {
+                        $choices[$i] = Choice::create([
+                            'exam_id'       => $exam->id,
+                            'question_id'   => $question->id,
+                            'description'   => $request->input('choice' . $i),
+                        ]);
+                    }
+                }
+
+                if (isset($request->answer)) {
+                    if (isset($choices[$request->answer])) {
+                        $question->update([
+                            'answer_choice_id' => $choices[$request->answer]->id,
+                        ]);
+                    }
+                }
+
+                alert()->success('Done', 'New question and choices created');
             }
-
-            $question->update([
-                'answer_choice_id' => $choices[$request->answer]->id,
-            ]);
-
-            alert()->success('Done', 'New question and choices created');
         }
 
         activity()
@@ -125,6 +199,9 @@ class LecturerController extends Controller
         return redirect()->route('lecturer.course.exam', $course);
     }
 
+    /**
+     * @return Application|Factory|View
+     */
     public function dashboard()
     {
         return view('lecturer.dashboard',[
@@ -133,14 +210,26 @@ class LecturerController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function request(Request $request)
     {
-        $UserRequest = UserRequest::create([
-            'user_id'           => Auth::user()->id,
-            'description'       => $request->description,
-            'request_type_id'   => $request->request_type_id,
-            'data'              => $request->data ? $request->data : null,
+        $request->validate([
+            'description'       => 'required',
+            'request_type_id'   => 'required',
+            'data'              => 'nullable',
         ]);
+
+        if (isset(Auth::user()->id)) {
+            $userRequest = UserRequest::create([
+                'user_id'           => Auth::user()->id,
+                'description'       => $request->description,
+                'request_type_id'   => $request->request_type_id,
+                'data'              => $request->data ? $request->data : null,
+            ]);
+        }
 
         alert()->success('Done', 'UserRequest has been saved successfully');
 

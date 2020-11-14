@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Profile;
 use App\Models\Role;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,30 @@ class ProfileController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function upgradeRole(Request $request)
     {
-        $role = Role::create([
-            'role_type_id'      => $request->role_type_id,
-            'user_id'           => Auth::user()->id,
+        $request->validate([
+            'role_type_id'          => 'required',
         ]);
+
+        $roles = null;
+
+        if (isset(Auth::user()->id)) {
+            $role = Role::create([
+                'role_type_id'      => $request->role_type_id,
+                'user_id'           => Auth::user()->id,
+            ]);
+        }
+
+        activity()
+            ->performedOn($role)
+            ->causedBy(Auth::user())
+            ->log('Role is upgraded');
+
+        alert()->success('Done', 'Update Role successfully');
 
         return redirect()->back();
     }
@@ -29,8 +45,8 @@ class ProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Profile $profile
+     * @return Response
      */
     public function show(Profile $profile)
     {
@@ -42,13 +58,19 @@ class ProfileController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param Profile $profile
+     * @return Response
      */
     public function update(Request $request, Profile $profile)
     {
-        $profile->update([
+        $request->validate([
+            'location'  => 'required',
+            'DOB'       => 'required',
+            'bio'       => 'required',
+        ]);
+
+        $profile = $profile->update([
             'location'  => $request->location,
             'DOB'       => $request->DOB,
             'bio'       => $request->bio,
@@ -63,12 +85,6 @@ class ProfileController extends Controller
         return redirect()->route('profile.show', $profile);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Profile  $profile
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Profile $profile)
     {
         //

@@ -6,18 +6,27 @@ use App\Models\Course;
 use App\Models\User;
 use App\Models\Role;
 use App\Models\EnrollCourse as Enroll;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Imports\CourseImport;
+use Illuminate\Http\Response;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 
 class CourseController extends Controller
 {
+    /**
+     * CourseController constructor.
+     */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
     public function import(Request $request)
     {
         $dataTime = date('Ymd_His');
@@ -41,7 +50,7 @@ class CourseController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -53,17 +62,25 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return Response
      */
     public function store(Request $request)
     {
-        $user=Auth::user();
-        $course = Course::create([
-            'name'      => $request->name,
-            'user_id'     => $user->id,
-            'role_type_id' =>$user->role_type_id,
+        $request->validate([
+            'name'          => 'required|max:255'
         ]);
+
+        $course = Course::create([
+            'name'          => $request->name,
+            'user_id'       => Auth::user()->id,
+            'role_type_id'  => Auth::user()->role_type_id,
+        ]);
+
+        activity()
+            ->performedOn($course)
+            ->causedBy(Auth::user())
+            ->log('New course created');
 
         if($course){
             alert()->success('Done', 'Course saved successfully...');
@@ -76,8 +93,8 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Course  $course
-     * @return \Illuminate\Http\Response
+     * @param Course $course
+     * @return Response
      */
     public function show(Course $course)
     {
@@ -86,12 +103,16 @@ class CourseController extends Controller
         ]);
     }
 
+    /**
+     * @param Request $request
+     * @param Course $course
+     * @return RedirectResponse
+     */
     public function enroll(request $request, Course $course)
     {
         if(Enroll::where('status', '1')->where('user_id', Auth::user()->id)->where('course_id', $course->id)->exists())
         {
             alert()->warning('Already enrolled', 'You are already enrolled this course');
-
             return redirect()->back();
         }
 
