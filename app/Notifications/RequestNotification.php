@@ -18,7 +18,7 @@ class RequestNotification extends Notification
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param UserRequest $request
      */
     public function __construct(UserRequest $request)
     {
@@ -40,11 +40,11 @@ class RequestNotification extends Notification
      * Get the mail representation of the notification.
      *
      * @param  mixed  $notifiable
-     * @return \Illuminate\Notifications\Messages\MailMessage
+     * @return MailMessage
      */
     public function toMail($notifiable)
     {
-        
+
         if($this->request->requestType->name == 'pending'){
             return (new MailMessage)
                 ->greeting('Hello!')

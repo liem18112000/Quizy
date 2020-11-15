@@ -198,3 +198,19 @@ Route::get('/admin/request', [App\Http\Controllers\AdminController::class, 'allR
 Route::put('/admin/request/{userRequest}/verify', [App\Http\Controllers\AdminController::class, 'verify'])->name('admin.request.verify');
 
 Route::put('/admin/request/{userRequest}/deny', [App\Http\Controllers\AdminController::class, 'deny'])->name('admin.request.deny');
+
+
+
+/*
+|--------------------------------------------------------------------------
+| Admin Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/{role}/feedback/inbox', [App\Http\Controllers\FeedbackController::class,'inbox'])->name('feedback.inbox');
+
+Route::post('/{role}/feedback/inbox/readAll', [App\Http\Controllers\FeedbackController::class,'markAsReadAll'])->name('feedback.inbox.readAll');
+
+Route::get('/{role}/feedback/', [App\Http\Controllers\FeedbackController::class,'index'])->name('feedback.index');
+
+Route::get('/feedback/read/{notify}', [App\Http\Controllers\FeedbackController::class, 'read'])->name('feedback.read');

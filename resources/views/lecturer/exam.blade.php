@@ -17,7 +17,7 @@
                 <i class="fa fa-plus" aria-hidden="true"></i>
                 Create exam
             </button>
-            <a name="" id="" class="btn btn-secondary" href="{{ route('lecturer.course')}}" role="button">Back</a>
+            <a id="" class="btn btn-secondary" href="{{ route('lecturer.course')}}" role="button">Back</a>
         </form>
     </div>
 
